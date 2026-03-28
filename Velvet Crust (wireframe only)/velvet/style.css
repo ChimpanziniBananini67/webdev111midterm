@@ -1,0 +1,169 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background:#eef1f7;
+}
+
+/* HEADER */
+header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 40px;
+    background:#dfe4ec;
+}
+
+.logo {
+    font-family:'Great Vibes', cursive;
+    font-size:36px;
+}
+
+nav a {
+    margin:0 15px;
+    text-decoration:none;
+    color:#333;
+    font-weight:500;
+}
+
+/* HERO */
+.hero {
+    height:90vh;
+    background:url('bg1.png') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    padding:60px;
+    position:relative;
+}
+
+
+.hero-text {
+    position:relative;
+    max-width:500px;
+}
+
+.hero-text h2 {
+    font-family:'Great Vibes';
+    font-size:70px;
+}
+
+.hero-text p {
+    margin:15px 0;
+    line-height:1.5;
+}
+
+.btn {
+    background:#000;
+    color:#fff;
+    padding:12px 25px;
+    border-radius:25px;
+    text-decoration:none;
+    display:inline-block;
+}
+
+/* MENU CONTAINER */
+.menu-container {
+    background:#dfe4ec;
+    margin:40px;
+    padding:30px;
+    border-radius:25px;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
+
+/* ITEM CARD */
+.item {
+    display:flex;
+    align-items:center;
+    gap:20px;
+
+    background:#f5f7fb;
+    padding:20px;
+    border-radius:20px;
+}
+
+/* IMAGE */
+.item img {
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+/* TEXT */
+.item h3 {
+    flex:1;
+    font-size:18px;
+}
+
+/* BUTTONS */
+.controls {
+    display:flex;
+    gap:10px;
+}
+
+.controls button {
+    background:#cdd3df;
+    border:none;
+    padding:10px 15px;
+    border-radius:20px;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.controls button:hover {
+    background:#aeb6c7;
+}
+
+/* LOGIN */
+.center {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.card {
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    width:300px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card input {
+    width:100%;
+    padding:10px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+
+.card button {
+    width:100%;
+    padding:10px;
+    background:black;
+    color:white;
+    border:none;
+    border-radius:10px;
+}
+
+.item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}

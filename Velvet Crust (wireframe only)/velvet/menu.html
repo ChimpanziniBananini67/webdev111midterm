@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="style.css">
+<script defer src="js/script.js"></script>
+
+<title>Menu</title>
+</head>
+
+<body>
+
+<header>
+    <h1 class="logo">Velvet Crust</h1>
+    <div class="icons">
+        <span onclick="goToCart()">🛒</span>
+        <span onclick="location.href='login.html'">👤</span>
+    </div>
+</header>
+
+<div class="menu-container">
+
+    <div class="item">
+        <img src="tdc.png">
+        <h3>Triple Dark Chocolate</h3>
+        <div class="controls">
+            <button onclick="addItem('Chocolate')">+</button>
+            <button onclick="removeItem('Chocolate')">-</button>
+        </div>
+    </div>
+
+    <div class="item">
+        <img src="strwbry.png">
+        <h3>Strawberry Cake</h3>
+        <div class="controls">
+            <button onclick="addItem('Strawberry')">+</button>
+            <button onclick="removeItem('Strawberry')">-</button>
+        </div>
+    </div>
+
+    <div class="item">
+        <img src="fr.png">
+        <h3>Ferrero Rocher</h3>
+        <div class="controls">
+            <button onclick="addItem('Ferrero')">+</button>
+            <button onclick="removeItem('Ferrero')">-</button>
+        </div>
+    </div>
+
+    <div class="item">
+        <img src="creampie.png">
+        <h3>Boston Creme</h3>
+        <div class="controls">
+            <button onclick="addItem('Boston')">+</button>
+            <button onclick="removeItem('Boston')">-</button>
+        </div>
+    </div>
+	
+	<div class="item">
+        <img src="carrot.png">
+        <h3>Carrot</h3>
+        <div class="controls">
+            <button onclick="addItem('Carrot')">+</button>
+            <button onclick="removeItem('Carrot')">-</button>
+        </div>
+    </div>
+	
+	<div class="item">
+        <img src="lm.png">
+        <h3>Vanilla Cake with Chocolate Buttercream</h3>
+        <div class="controls">
+            <button onclick="addItem('vc')">+</button>
+            <button onclick="removeItem('vc')">-</button>
+        </div>
+    </div>
+	
+
+</div>
+
+</body>
+</html>
