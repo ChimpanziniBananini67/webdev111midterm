@@ -1,0 +1,217 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* BODY */
+body {
+    background: #f6f8fb;
+    color: #1e293b;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111827;
+    text-decoration: none;
+}
+
+.nav-logo span {
+    color: #6366f1;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #475569;
+    font-size: 14px;
+}
+
+.nav-links a.active {
+    color: #6366f1;
+    font-weight: 600;
+}
+
+.nav-login-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #6366f1;
+    color: white !important;
+}
+
+/* HERO */
+.Fullpage {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.Fullpage h1 {
+    font-size: 42px;
+    line-height: 1.2;
+}
+
+.Fullpage span {
+    color: #6366f1;
+}
+
+.Fullpage p {
+    margin-top: 15px;
+    color: #64748b;
+}
+
+.Fullpage-btns {
+    margin-top: 25px;
+}
+
+.btn-primary {
+    background: #6366f1;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    padding: 10px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1e293b;
+}
+
+/* SECTIONS */
+.security-section {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.security-badges {
+    margin-top: 15px;
+}
+
+.security-badge {
+    display: inline-block;
+    margin: 5px;
+    padding: 6px 12px;
+    background: #e0e7ff;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* FEATURES */
+.features-section {
+    padding: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.feature-icon {
+    font-size: 24px;
+}
+
+/* PAGE HEADER */
+.page-header {
+    padding: 40px 60px;
+}
+
+/* CARD */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+/* FORMS */
+.form-group {
+    margin-bottom: 12px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #cbd5f5;
+    border-radius: 6px;
+}
+
+/* TABLE */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.data-table th, .data-table td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+/* BADGES */
+.badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.badge-green { background: #d1fae5; }
+.badge-yellow { background: #fef9c3; }
+.badge-red { background: #fee2e2; }
+.badge-blue { background: #dbeafe; }
+
+/* CLIENT CARD */
+.client-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+/* DASHBOARD */
+.dashboard-container {
+    padding: 40px 60px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 12px;
+    color: #94a3b8;
+}

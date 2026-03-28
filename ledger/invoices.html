@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoices - LedgerFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">Ledger<span>Flow</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="invoices.html" class="active">Invoices</a>
+        <a href="clients.html">Clients</a>
+        <a href="pay.html">Pay</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="login.html" class="nav-login-btn">Login</a>
+    </div>
+</nav>
+
+<div class="page-header">
+    <h1>Invoices</h1>
+    <p>Create and manage your invoices.</p>
+</div>
+
+<div class="invoices-container">
+
+<div class="card">
+
+<div class="card-title">Create New Invoice</div>
+
+<form id="invoiceForm" onsubmit="handleInvoice(event)">
+
+<div class="form-group">
+<label>Client Name</label>
+<select required>
+<option value="">-- Select client --</option>
+<option>Reyes Construction</option>
+<option>Cruz & Associates</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Amount (PHP)</label>
+<input type="number" required>
+</div>
+
+<div class="form-group">
+<label>Invoice Date</label>
+<input type="date" required>
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<select>
+<option>Draft</option>
+<option>Sent</option>
+<option>Pending</option>
+</select>
+</div>
+
+<button type="submit" class="btn-primary">Create Invoice</button>
+
+</form>
+
+<!-- SUCCESS MESSAGE -->
+<div id="inv-success" style="display:none; margin-top:10px; color:green;">
+Invoice created successfully!
+</div>
+
+</div>
+
+</div>
+
+<script>
+function handleInvoice(e){
+    e.preventDefault();
+
+    document.getElementById('inv-success').style.display = 'block';
+    document.getElementById('invoiceForm').reset();
+
+    setTimeout(function(){
+        document.getElementById('inv-success').style.display = 'none';
+    }, 3000);
+}
+</script>
+
+</body>
+</html>

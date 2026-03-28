@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Partners - LedgerFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="nav-logo">Cash<span>Pilot</span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="invoices.html">Billing</a>
+        <a href="clients.html" class="active">Clients</a>
+        <a href="pay.html">Transactions</a>
+        <a href="dashboard.html">Insights</a>
+        <a href="login.html" class="nav-login-btn">Sign In</a>
+    </div>
+</nav>
+
+<div class="page-header">
+    <h1>Partners</h1>
+    <p>Manage your business relationships and contacts.</p>
+</div>
+
+<div class="clients-container">
+
+<div class="card">
+<div class="card-title">Add Partner</div>
+<div class="card-sub">Save a new business contact.</div>
+
+<form id="clientForm" onsubmit="handleClient(event)">
+<input type="text" placeholder="Company / Client Name" required>
+<input type="email" placeholder="Email Address" required>
+<input type="text" placeholder="Phone Number">
+<button class="btn-primary">Add Partner</button>
+</form>
+
+<div id="client-success" style="display:none;">Partner added successfully!</div>
+</div>
+
+<h2 style="margin-top:20px;">Your Network</h2>
+
+<div class="client-card">
+<div class="client-name">ReyBuild Co.</div>
+<div class="client-email">billing@reybuild.com</div>
+</div>
+
+<div class="client-card">
+<div class="client-name">UrbanEdge Legal</div>
+<div class="client-email">accounts@urbanedge.com</div>
+</div>
+
+</div>
+
+<script>
+function handleClient(e){
+e.preventDefault();
+document.getElementById('client-success').style.display='block';
+}
+</script>
+
+</body>
+</html>
