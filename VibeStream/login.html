@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - CCS Music</title>
+    <style>
+        body {background: #121212; color: white; font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh;}
+        .box {background: #181818; padding: 40px; border-radius: 10px; text-align: center;}
+        input {width: 220px; padding: 10px; margin: 10px 0;}
+        button {padding: 10px 20px; background: #1DB954; border: none; color: white; cursor: pointer;}
+        button:hover {background: #17a74a;}
+        a {color: #1DB954;}
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Login to CCS Music</h2>
+    <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required><br>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <button type="submit">Login</button>
+    </form>
+    <p id="message"></p>
+    <p>No account? <a href="register.html">Create one</a></p>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>
