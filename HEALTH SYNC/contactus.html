@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Health Sync Clinic</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your main stylesheet -->
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">Health Sync Clinic</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="book.html">Book Appointment</a></li>
+                    <li><a href="staff.html">Our Staff</a></li>
+                    <li><a href="history.html">Medical History</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html" class="active">Contact Us</a></li> <!-- Mark as active -->
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="register.html" class="register-btn">Register <span class="verified-badge">Verified</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-us-section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p class="section-intro">We're here to help! Whether you have questions about our services, need to schedule an appointment, or want to provide feedback, please reach out to us through the channels below.</p>
+
+                <div class="contact-wrapper">
+                    <!-- Contact Information Column -->
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <ul>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i> <!-- Font Awesome icon placeholder -->
+                                <strong>Address:</strong>
+                                <span>123 Health St, Wellness City, CA 90210</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i> <!-- Font Awesome icon placeholder -->
+                                <strong>Phone:</strong>
+                                <span><a href="tel:+15551234567">(555) 123-4567</a></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i> <!-- Font Awesome icon placeholder -->
+                                <strong>Email:</strong>
+                                <span><a href="mailto:info@healthsyncclinic.com">info@healthsyncclinic.com</a></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i> <!-- Font Awesome icon placeholder -->
+                                <strong>Opening Hours:</strong>
+                                <span>
+                                    Mon - Fri: 8:00 AM - 6:00 PM<br>
+                                    Saturday: 9:00 AM - 1:00 PM<br>
+                                    Sunday: Closed
+                                </span>
+                            </li>
+                        </ul>
+                        <!-- Social Media Links (Optional) -->
+                        <div class="social-links">
+                            <h4>Follow Us:</h4>
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Column -->
+                    <div class="contact-form-container">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="contactName">Name:</label>
+                                <input type="text" id="contactName" name="contactName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email:</label>
+                                <input type="email" id="contactEmail" name="contactEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Subject:</label>
+                                <input type="text" id="contactSubject" name="contactSubject">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message:</label>
+                                <textarea id="contactMessage" name="contactMessage" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Map Section (Optional but recommended) -->
+                <div class="map-section">
+                    <h3>Find Us On Map</h3>
+                    <!-- Placeholder for an embedded map -->
+                    <div id="map-placeholder">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.287591813124!2d-122.0840396146809!3d37.421999999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f70b32f921d51%3A0x6d0d3f3a4c7c9d1!2sGoogleplex!5e0!3m2!1sen!2sus!4v1678886400000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Health Sync Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

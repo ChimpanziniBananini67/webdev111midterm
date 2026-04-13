@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical History - Health Sync Clinic</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your main stylesheet -->
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">Health Sync Clinic</div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="book.html">Book Appointment</a></li>
+                    <li><a href="staff.html">Our Staff</a></li>
+                    <li><a href="history.html" class="active">Medical History</a></li> <!-- Mark as active -->
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="login.html" class="login-btn">Login</a>
+                <a href="register.html" class="register-btn">Register <span class="verified-badge">Verified</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="medical-history-section">
+            <div class="container">
+                <h2>Your Medical History</h2>
+                <div class="history-controls">
+                    <!-- Filters or search options could go here -->
+                    <div class="form-group">
+                        <label for="history-filter-date">Filter by Date:</label>
+                        <input type="month" id="history-filter-date" name="history-filter-date">
+                    </div>
+                     <div class="form-group">
+                        <label for="history-filter-provider">Filter by Provider:</label>
+                        <select id="history-filter-provider" name="history-filter-provider">
+                            <option value="">-- All Providers --</option>
+                            <option value="dr-smith">Dr. Jane Smith</option>
+                            <option value="dr-jones">Dr. Robert Jones</option>
+                            <option value="dr-lee">Dr. Emily Lee</option>
+                        </select>
+                    </div>
+                    <button id="apply-filters-btn" class="submit-btn">Apply Filters</button>
+                </div>
+
+                <div class="history-table-container">
+                    <table class="medical-history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Provider</th>
+                                <th>Service</th>
+                                <th>Diagnosis/Notes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Example History Entries -->
+                            <tr>
+                                <td>2023-10-26</td>
+                                <td>Dr. Jane Smith</td>
+                                <td>General Practice</td>
+                                <td>Routine check-up, mild cold symptoms. Advised rest.</td>
+                                <td><a href="#view-details/1">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>2023-08-15</td>
+                                <td>Dr. Robert Jones</td>
+                                <td>Specialist Consultation (Cardiology)</td>
+                                <td>Follow-up on blood pressure. Medication adjusted.</td>
+                                <td><a href="#view-details/2">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>2023-05-01</td>
+                                <td>Dr. Emily Lee</td>
+                                <td>Preventive Care</td>
+                                <td>Annual flu vaccination administered.</td>
+                                <td><a href="#view-details/3">View Details</a></td>
+                            </tr>
+                            <!-- More history entries would be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="history-summary">
+                    <p>Showing 3 of 3 entries.</p>
+                    <!-- Pagination controls could be added here if there are many entries -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Health Sync Clinic. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

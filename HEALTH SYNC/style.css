@@ -1,0 +1,1462 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Or a more professional font */
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    background-color: #007bff; /* Primary blue */
+    color: #ffffff;
+    padding-top: 1rem;
+    min-height: 70px;
+    border-bottom: #ccc 1px solid;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+header nav ul li a:hover {
+    color: #e0e0e0; /* Lighter shade on hover */
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+}
+
+.user-actions .login-btn,
+.user-actions .register-btn {
+    background: none;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 8px 15px;
+    margin-left: 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.user-actions .login-btn:hover,
+.user-actions .register-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.register-btn {
+    position: relative; /* For badge positioning */
+}
+
+.verified-badge {
+    position: absolute;
+    top: -5px; /* Adjust as needed */
+    right: -5px; /* Adjust as needed */
+    background-color: #28a745; /* Green for verified */
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* Main Content Styling */
+main {
+    padding: 2rem 0;
+}
+
+#hero {
+    background-color: #eef7ff; /* Very light blue tint */
+    text-align: center;
+    padding: 4rem 0;
+}
+
+#hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Footer */
+footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
+
+
+/* Add these to your existing style.css */
+
+/* Login Form Section */
+.login-form-section {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.login-form-section h2 {
+    color: #007bff; /* Primary blue */
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.login-form-section form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9; /* Light background for the form */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left; /* Align labels and inputs to the left */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.form-options .remember-me input[type="checkbox"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.form-options .remember-me label {
+    display: inline; /* Allow label next to checkbox */
+    font-weight: normal;
+    color: #555;
+    vertical-align: middle;
+}
+
+.form-options a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.form-options a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.signup-link {
+    margin-top: 2rem;
+    font-size: 1rem;
+}
+
+.signup-link p {
+    color: #555;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Style for the active navigation link */
+header nav ul li a.active,
+.user-actions .login-btn.active {
+    font-weight: bold; /* Example: make active link bold */
+    /* You can add other styles like underline or different color */
+}
+
+/* --- Existing Styles (Header, Footer, Container, etc. - assume they are here) --- */
+
+/* Hero Section */
+#hero {
+    background-color: #eef7ff; /* Very light blue tint, or could be a background image */
+    text-align: center;
+    padding: 5rem 0; /* More vertical padding for emphasis */
+    color: #333; /* Darker text for readability on light background */
+}
+
+#hero h1 {
+    font-size: 3rem; /* Larger heading */
+    margin-bottom: 1rem;
+    color: #007bff; /* Primary blue */
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 700px; /* Limit width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Call to Action Button (already defined, but good to reiterate) */
+.cta-button {
+    display: inline-block;
+    background-color: #007bff; /* Primary blue */
+    color: #ffffff;
+    padding: 15px 30px; /* Larger padding */
+    text-decoration: none;
+    font-size: 1.2rem; /* Larger font */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover effect */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3); /* Subtle shadow */
+}
+
+.cta-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4); /* Enhanced shadow */
+}
+
+/* Services Overview Section */
+#services-overview {
+    padding: 4rem 0;
+    text-align: center;
+    background-color: #ffffff; /* White background */
+}
+
+#services-overview h2 {
+    color: #007bff;
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Spacing between grid items */
+    margin-bottom: 3rem;
+}
+
+.service-item {
+    background-color: #f9f9f9; /* Very light gray background for cards */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.service-item img {
+    max-width: 60px; /* Size for icons */
+    margin-bottom: 1.5rem;
+    opacity: 0.8; /* Slightly muted icons */
+}
+
+.service-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #007bff;
+}
+
+.service-item p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.service-item a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.service-item a:hover {
+    color: #0056b3;
+}
+
+.view-all-services {
+    margin-top: 2rem;
+}
+
+.secondary-button { /* Style for "View All" and "Read Our Story" */
+    display: inline-block;
+    background-color: transparent;
+    color: #007bff;
+    border: 2px solid #007bff;
+    padding: 12px 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.secondary-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* About Us Snippet Section */
+#about-snippet {
+    padding: 4rem 0;
+    background-color: #f0f8ff; /* A very subtle light blue for visual separation */
+    color: #333;
+}
+
+#about-snippet .container {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Space between text and image */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center content when wrapped */
+}
+
+#about-snippet .about-content {
+    flex: 1; /* Take available space */
+    min-width: 300px; /* Minimum width before wrapping */
+    text-align: left; /* Align text to the left */
+}
+
+#about-snippet h2 {
+    color: #007bff;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+#about-snippet p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #555;
+}
+
+#about-snippet .about-image {
+    flex: 1; /* Take available space */
+    min-width: 300px; /* Minimum width before wrapping */
+    text-align: center; /* Center image if it's smaller than its container */
+}
+
+#about-snippet .about-image img {
+    max-width: 100%; /* Ensure image is responsive */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Call to Action - Appointment Booking Section */
+#book-cta {
+    background-color: #007bff; /* Primary blue background */
+    color: white;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+#book-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#book-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+    #services-overview h2, #about-snippet h2, #book-cta h2 {
+        font-size: 1.8rem;
+    }
+    .services-grid {
+        grid-template-columns: 1fr; /* Stack services on small screens */
+    }
+    #about-snippet .container {
+        flex-direction: column; /* Stack about content and image */
+    }
+    #about-snippet .about-content, #about-snippet .about-image {
+        min-width: unset; /* Remove min-width when stacked */
+        width: 100%;
+    }
+    #about-snippet .about-content {
+        text-align: center; /* Center text when stacked */
+        margin-bottom: 2rem;
+    }
+}
+
+
+/* Add these to your existing style.css */
+
+/* Register Form Section */
+.register-form-section {
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.register-form-section h2 {
+    color: #007bff; /* Primary blue */
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.register-form-section form {
+    max-width: 500px; /* Slightly wider form than login */
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #f9f9f9; /* Light background for the form */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align form elements */
+}
+
+.form-group {
+    margin-bottom: 1.2rem; /* Reduced margin */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="date"],
+.form-group input[type="tel"] { /* Added tel for phone number */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group small { /* For password requirements */
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.terms-checkbox {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.1); /* Slightly larger checkbox */
+}
+
+.terms-checkbox label {
+    display: inline; /* Allow label next to checkbox */
+    font-weight: normal;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.terms-checkbox label a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.terms-checkbox label a:hover {
+    text-decoration: underline;
+}
+
+.submit-btn { /* Re-using the submit button style from login */
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #007bff; /* Primary blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem; /* Add some space above the button */
+}
+
+.submit-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.login-link {
+    margin-top: 2rem;
+    font-size: 1rem;
+    text-align: center; /* Center the link text */
+}
+
+.login-link p {
+    color: #555;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Ensure the active navigation link style is consistent */
+/* .user-actions .register-btn.active { ... } */
+
+
+/* Add these to your existing style.css */
+
+/* Booking Section */
+.booking-section {
+    padding: 3rem 0;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.booking-section h2 {
+    color: #007bff; /* Primary blue */
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.booking-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 30px; /* Space between availability and booking form */
+    max-width: 1000px; /* Max width for the content */
+    margin: 0 auto;
+    text-align: left;
+}
+
+.availability-display,
+.appointment-form-area {
+    flex: 1; /* Each takes equal space */
+    min-width: 300px; /* Minimum width before wrapping */
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.availability-display h3,
+.appointment-form-area h3 {
+    color: #007bff;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.availability-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid for controls */
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.availability-controls .form-group {
+    margin-bottom: 0; /* Remove default margin as grid provides spacing */
+}
+
+.availability-controls label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.availability-controls input[type="date"],
+.availability-controls select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#check-availability-btn {
+    /* Inherits submit-btn styles but might need adjustments if placed in grid */
+    width: auto; /* Allow button to size itself */
+    grid-column: span 2; /* Span across two columns if desired, or adjust */
+    align-self: end; /* Align to the bottom if in grid */
+    margin-top: 1rem; /* Space if not in grid */
+}
+
+/* Placeholder for available slots */
+.available-slots {
+    margin-top: 1.5rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+    min-height: 150px; /* Placeholder height */
+    background-color: #ffffff; /* White background for the slots area */
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.available-slots p {
+    color: #777;
+    font-style: italic;
+}
+
+/* Styles for displaying actual time slots */
+.time-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.time-slot {
+    background-color: #e0f7fa; /* Light cyan for available slots */
+    color: #007bff;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid #b2ebf2;
+}
+
+.time-slot:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.time-slot.selected { /* Style for the slot a user clicks */
+    background-color: #0056b3;
+    color: white;
+    font-weight: bold;
+}
+
+.time-slot.unavailable { /* If you want to show unavailable slots */
+    background-color: #f0f0f0;
+    color: #aaa;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* Appointment Form Area */
+.appointment-form-area form {
+    margin-top: 1.5rem; /* Space between title and form fields */
+}
+
+.appointment-form-area .form-group {
+    margin-bottom: 1rem;
+}
+
+.appointment-form-area label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.appointment-form-area input[type="text"],
+.appointment-form-area input[type="email"],
+.appointment-form-area input[type="tel"],
+.appointment-form-area textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.appointment-form-area textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+/* Responsive adjustments for booking wrapper */
+@media (max-width: 768px) {
+    .booking-wrapper {
+        flex-direction: column; /* Stack the sections */
+    }
+    .availability-display,
+    .appointment-form-area {
+        min-width: unset; /* Remove min-width */
+        width: 100%; /* Take full width */
+    }
+    .availability-controls {
+        grid-template-columns: 1fr; /* Stack controls */
+    }
+    #check-availability-btn {
+        grid-column: 1fr; /* Span full width */
+        width: auto;
+    }
+}
+
+
+/* Add these to your existing style.css */
+
+/* Medical History Section */
+.medical-history-section {
+    padding: 3rem 0;
+    background-color: #ffffff;
+}
+
+.medical-history-section h2 {
+    color: #007bff; /* Primary blue */
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* History Controls */
+.history-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #f0f8ff; /* Light blue background for controls */
+    border-radius: 8px;
+    align-items: flex-end; /* Align items to the bottom */
+}
+
+.history-controls .form-group {
+    flex: 1; /* Allow groups to grow */
+    min-width: 180px; /* Minimum width */
+    margin-bottom: 0; /* Reset margin as gap handles spacing */
+}
+
+.history-controls label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.history-controls input[type="month"],
+.history-controls select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+#apply-filters-btn {
+    /* Inherits submit-btn styles but might need to be adjusted for flex context */
+    width: auto; /* Let button size itself */
+    padding: 10px 20px; /* Slightly smaller padding than main submit */
+    margin-bottom: 0; /* Remove bottom margin */
+}
+
+/* History Table */
+.history-table-container {
+    overflow-x: auto; /* Add horizontal scroll for small screens */
+}
+
+.medical-history-table {
+    width: 100%;
+    border-collapse: collapse; /* Remove space between borders */
+    margin-top: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.medical-history-table th,
+.medical-history-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Lighter border for rows */
+}
+
+.medical-history-table thead th {
+    background-color: #007bff; /* Primary blue header */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.medical-history-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Zebra striping for rows */
+}
+
+.medical-history-table tbody tr:hover {
+    background-color: #eef7ff; /* Highlight on hover */
+}
+
+.medical-history-table td a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.medical-history-table td a:hover {
+    text-decoration: underline;
+}
+
+/* History Summary */
+.history-summary {
+    text-align: right;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .history-controls {
+        flex-direction: column; /* Stack controls */
+        align-items: stretch; /* Make items full width */
+    }
+    .history-controls .form-group {
+        min-width: unset;
+        width: 100%;
+    }
+    #apply-filters-btn {
+        width: 100%; /* Full width button */
+    }
+    .medical-history-table th,
+    .medical-history-table td {
+        padding: 10px 8px; /* Smaller padding for tables on mobile */
+        font-size: 0.9rem;
+    }
+    .medical-history-table thead th {
+        font-size: 0.8rem;
+    }
+}
+
+/* Add these to your existing style.css */
+
+/* Services Page Section */
+.services-page-section {
+    padding: 3rem 0;
+    background-color: #ffffff;
+}
+
+.services-page-section h2 {
+    color: #007bff; /* Primary blue */
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.services-page-section .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.service-category {
+    background-color: #f9f9f9; /* Light background for each service block */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 3rem;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 30px; /* Space between header and details */
+    align-items: flex-start; /* Align items to the top */
+}
+
+.service-category .service-header {
+    flex: 0 0 200px; /* Fixed width for header with icon */
+    text-align: center;
+}
+
+.service-category .service-icon {
+    max-width: 70px; /* Size for service icons */
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.service-category h3 {
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+.service-category .service-details {
+    flex: 1; /* Takes remaining space */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.service-category .service-details p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.service-category .service-details ul {
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.service-category .service-details li {
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+}
+
+/* Small CTA button for each service */
+.cta-button-small {
+    display: inline-block;
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button-small:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive adjustments for services page */
+@media (max-width: 768px) {
+    .services-page-section h2 {
+        font-size: 2rem;
+    }
+    .service-category {
+        flex-direction: column; /* Stack header and details */
+        align-items: center; /* Center items */
+        text-align: center;
+    }
+    .service-category .service-header {
+        flex-basis: auto; /* Remove fixed width */
+        margin-bottom: 20px;
+    }
+    .service-category .service-details {
+        min-width: unset; /* Remove min-width */
+        width: 100%;
+    }
+    .service-category .service-details ul {
+        margin-left: 0; /* Center list if needed */
+        text-align: left; /* Keep text left-aligned for readability */
+        display: inline-block; /* To center the list */
+    }
+}
+
+/* Add these to your existing style.css */
+
+/* About Us Section */
+.about-us-section {
+    padding: 3rem 0;
+    background-color: #ffffff;
+}
+
+.about-us-section h2 {
+    color: #007bff; /* Primary blue */
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+}
+
+.about-content-block {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 40px; /* Space between text and image */
+    margin-bottom: 3rem;
+    align-items: center; /* Vertically align items */
+    padding: 2rem;
+    background-color: #f9f9f9; /* Light background for blocks */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.about-content-block.values { /* Different background for values for variety */
+    background-color: #eef7ff;
+}
+
+.about-content-block .text-content,
+.about-content-block .image-content {
+    flex: 1; /* Each takes available space */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.about-content-block .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.about-content-block h3 {
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.about-content-block p,
+.about-content-block ul {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+.about-content-block ul {
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.about-content-block li {
+    margin-bottom: 0.8rem;
+}
+
+/* Specific styling for image-first or text-first blocks */
+.about-content-block.mission .image-content { order: 2; }
+.about-content-block.mission .text-content { order: 1; }
+
+.about-content-block.values .image-content { order: 1; }
+.about-content-block.values .text-content { order: 2; }
+
+/* About CTA */
+.about-cta {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 2rem;
+}
+
+.about-cta h3 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.about-cta p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-us-section h2 {
+        font-size: 2rem;
+    }
+    .about-content-block {
+        flex-direction: column; /* Stack text and image */
+        text-align: center;
+        align-items: center;
+    }
+    .about-content-block .text-content,
+    .about-content-block .image-content {
+        min-width: unset;
+        width: 100%;
+    }
+    .about-content-block.mission .image-content,
+    .about-content-block.values .image-content {
+        order: 0; /* Reset order when stacked */
+    }
+    .about-content-block .image-content img {
+        margin-bottom: 20px; /* Add space below image when stacked */
+    }
+    .about-content-block ul {
+        display: inline-block; /* Center list if needed */
+        text-align: left; /* Keep text left-aligned */
+    }
+}
+
+/* Add these to your existing style.css */
+
+/* About Us Section */
+.about-us-section {
+    padding: 3rem 0;
+    background-color: #ffffff;
+}
+
+.about-us-section h2 {
+    color: #007bff; /* Primary blue */
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+}
+
+.about-content-block {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 40px; /* Space between text and image */
+    margin-bottom: 3rem;
+    align-items: center; /* Vertically align items */
+    padding: 2rem;
+    background-color: #f9f9f9; /* Light background for blocks */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.about-content-block.values { /* Different background for values for variety */
+    background-color: #eef7ff;
+}
+
+.about-content-block .text-content,
+.about-content-block .image-content {
+    flex: 1; /* Each takes available space */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.about-content-block .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.about-content-block h3 {
+    font-size: 1.8rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.about-content-block p,
+.about-content-block ul {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+.about-content-block ul {
+    list-style: disc;
+    margin-left: 25px;
+    margin-bottom: 1.5rem;
+}
+
+.about-content-block li {
+    margin-bottom: 0.8rem;
+}
+
+/* Specific styling for image-first or text-first blocks */
+.about-content-block.mission .image-content { order: 2; }
+.about-content-block.mission .text-content { order: 1; }
+
+.about-content-block.values .image-content { order: 1; }
+.about-content-block.values .text-content { order: 2; }
+
+/* About CTA */
+.about-cta {
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 2rem;
+}
+
+.about-cta h3 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.about-cta p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-us-section h2 {
+        font-size: 2rem;
+    }
+    .about-content-block {
+        flex-direction: column; /* Stack text and image */
+        text-align: center;
+        align-items: center;
+    }
+    .about-content-block .text-content,
+    .about-content-block .image-content {
+        min-width: unset;
+        width: 100%;
+    }
+    .about-content-block.mission .image-content,
+    .about-content-block.values .image-content {
+        order: 0; /* Reset order when stacked */
+    }
+    .about-content-block .image-content img {
+        margin-bottom: 20px; /* Add space below image when stacked */
+    }
+    .about-content-block ul {
+        display: inline-block; /* Center list if needed */
+        text-align: left; /* Keep text left-aligned */
+    }
+}
+
+
+/* Add these to your existing style.css */
+
+/* Staff Section */
+.staff-section {
+    padding: 3rem 0;
+    background-color: #ffffff;
+}
+
+.staff-section h2 {
+    color: #007bff; /* Primary blue */
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.staff-section .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Spacing between staff cards */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.staff-card {
+    background-color: #f9f9f9; /* Light background for card */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Ensures image corners are rounded if card is */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.staff-card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+.staff-image-container {
+    width: 100%;
+    height: 250px; /* Fixed height for images */
+    overflow: hidden; /* Clip image if it's too large */
+    position: relative; /* For potential overlays */
+}
+
+.staff-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container, cropping if necessary */
+    display: block; /* Remove extra space below image */
+}
+
+.staff-info {
+    padding: 1.5rem;
+}
+
+.staff-info h3 {
+    font-size: 1.6rem;
+    color: #007bff;
+    margin-bottom: 0.5rem;
+}
+
+.staff-info .specialty {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.staff-info p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Optional: Staff Social Links */
+.staff-social {
+    margin-top: 1rem;
+}
+
+.staff-social a {
+    margin: 0 5px;
+    color: #007bff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.staff-social a:hover {
+    color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .staff-section h2 {
+        font-size: 2rem;
+    }
+    .staff-grid {
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+    }
+    .staff-image-container {
+        height: 200px; /* Slightly smaller images on mobile */
+    }
+    .staff-info {
+        padding: 1rem;
+    }
+    .staff-info h3 {
+        font-size: 1.4rem;
+    }
+    .staff-info p {
+        font-size: 0.9rem;
+    }
+}
+
+
+
+.staff-image-container {
+    width: 100%;
+    height: 250px; 
+    overflow: hidden; 
+    position: relative; 
+}
+
+.staff-image-container img {
+    display: block; /* Removes extra space below the image */
+    width: 100%; /* Makes the image take the full width of its container */
+    height: 100%; /* Makes the image take the full height of its container */
+    object-fit: cover; /* This is key for "perfectly sized" */
+    /* Optional: Add transitions if you want smooth scaling on hover, though it's less common for static images */
+    /* transition: transform 0.3s ease; */
+}
+
+/* Optional: If you want the image to scale slightly on hover */
+/*
+.staff-card:hover .staff-image-container img {
+    transform: scale(1.05);
+}
+*/
+
+/* --- Responsive adjustments for staff page --- */
+@media (max-width: 768px) {
+    .staff-image-container {
+        height: 200px; /* Slightly smaller images on mobile */
+    }
+    /* No need to change img properties here, they are already responsive */
+}
+
+
+/* --- Additions/Confirmations for About Us page images in style.css --- */
+
+/* Targeting images within the .image-content divs inside .about-content-block */
+.about-content-block .image-content img {
+    display: block;       /* Removes potential extra space below the image */
+    max-width: 100%;      /* Ensures the image never exceeds the width of its parent container (.image-content) */
+    height: auto;         /* Maintains the image's aspect ratio as it scales */
+    border-radius: 8px;   /* Inherited from previous example, good for rounded corners */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Adds a subtle shadow */
+}
+
+/* The parent container's styles are already set up for responsiveness: */
+.about-content-block .image-content {
+    flex: 1; /* Allows the image container to grow and shrink */
+    min-width: 300px; /* Ensures it has a minimum width before wrapping */
+    text-align: center; /* Centers the image within the container if it's smaller */
+}
+
+/* The overall block's flex properties also contribute to responsiveness */
+.about-content-block {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap onto the next line on smaller screens */
+    gap: 40px; /* Spacing between image and text */
+    align-items: center; /* Vertically aligns items in the flex container */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    /* The image itself remains responsive due to max-width: 100% and height: auto */
+    /* The overall block's flex-wrap handles stacking of image and text */
+    .about-content-block .image-content {
+         /* No specific changes needed here for the image itself,
+            as it's already designed to scale correctly. */
+    }
+}
