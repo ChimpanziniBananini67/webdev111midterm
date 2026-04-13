@@ -33,7 +33,7 @@ nav a {
 /* HERO */
 .hero {
     height:90vh;
-    background:url('bg1.png') center/cover no-repeat;
+    background:url('bg1.PNG') center/cover no-repeat;
     display:flex;
     align-items:center;
     padding:60px;
