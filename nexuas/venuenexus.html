@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events - Events Calendar</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #EAEAEA;
+  color: #252A34;
+  line-height: 1.6;
+}
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+  --primary: #FF2E63;
+  --secondary: #08D9D6;
+  --accent1: #FFBF00;
+  --accent2: #8A2BE2;
+  --dark: #252A34;
+  --light: #FFFFFF;
+  --bg-light: #F0F0F0;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--light);
+  border-bottom: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  margin: 1rem;
+  border-radius: 4px;
+}
+
+/* ============================================
+   NEUBRUTALISM BUTTONS
+   ============================================ */
+.nav-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-decoration: none; /* Ensure links don't have underlines */
+}
+
+.nav-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+.nav-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px 0px var(--dark);
+}
+
+/* Different colors for variety */
+.nav-btn.secondary { background-color: var(--secondary); }
+.nav-btn.accent1 { background-color: var(--accent1); color: var(--dark); }
+.nav-btn.accent2 { background-color: var(--accent2); }
+.nav-btn.dark { background-color: var(--dark); }
+
+/* Active navigation button style */
+.nav-btn.active {
+  box-shadow: inset 0px 0px 0px 3px var(--dark); /* Inset shadow to look pressed */
+  transform: translate(3px, 3px);
+} 
+  
+
+/* ============================================
+   VENUE PAGE SPECIFIC STYLES
+   ============================================ */
+
+.venue-header {
+  margin-bottom: 2rem;
+}
+
+.venue-header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.venue-header p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+/* Main Map & Info Section */
+.venue-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 10px 10px 0px 0px var(--dark);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Map Box */
+.venue-map-box {
+  background-color: #d1f7f6; /* Light teal background */
+  border: 3px solid var(--dark);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.map-placeholder {
+  background-color: var(--dark);
+  color: var(--light);
+  width: 100%;
+  padding: 3rem 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.map-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 250px;
+}
+
+.map-btn {
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.map-btn.secondary {
+  background-color: var(--secondary);
+  color: var(--light);
+}
+
+.map-btn.primary {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+/* Venue Overview */
+.venue-overview h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+}
+
+.venue-overview ul {
+  list-style: square;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.venue-overview ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.venue-action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-btn {
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  background-color: var(--secondary);
+  color: var(--light);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.feature-card {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid var(--dark);
+  margin: 0 auto 1rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.feature-icon.orange { background-color: var(--primary); }
+.feature-icon.yellow { background-color: var(--accent1); }
+.feature-icon.purple { background-color: var(--accent2); }
+
+.feature-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Rules & Accessibility Section */
+.rules-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 10px 10px 0px 0px var(--dark);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.rules-column h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  text-decoration: underline;
+}
+
+.rules-column ul {
+  list-style: square;
+  padding-left: 1.5rem;
+}
+
+.rules-column ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .venue-main {
+    grid-template-columns: 1fr;
+  }
+  .rules-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .venue-header h1 {
+    font-size: 2.2rem;
+  }
+  .venue-action-buttons {
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="eventsnexus.html" class="nav-btn secondary">Events</a>
+        <a href="ticketnexus.html" class="nav-btn accent1">Tickets</a>
+        <a href="venuenexus.html" class="nav-btn accent2 active">Venue</a>
+        <a href="contactnexus.html" class="nav-btn">Contact</a>
+        <a href="adminnexus.html" class="nav-btn dark">Admin</a>
+        <a href="loginnexus.html" class="nav-btn secondary">Login</a>
+    </nav>
+
+    <main class="content-area">
+        <div class="venue-header">
+            <h1 class="page-title">NEXUS HALL</h1>
+            <p class="page-subtitle">Your Ultimate Event Destination in the Heart of Quezon City, Metro Manila</p>
+        </div>
+
+        <!-- Main Map & Info Section -->
+        <div class="venue-main">
+            <!-- Left Side: Map Box -->
+            <div class="venue-map-box">
+                <div class="map-placeholder">
+                    📍 INTERACTIVE VENUE MAP<br>
+                    <small>123 Main Avenue, Cubao<br>Quezon City, Metro Manila<br>Nearest MRT: Cubao Station (1.2 km)</small>
+                </div>
+                <div class="map-buttons">
+                    <a href="#" class="map-btn secondary">View Full Map</a>
+                    <a href="#" class="map-btn primary">Get Live Directions</a>
+                </div>
+            </div>
+
+            <!-- Right Side: Overview -->
+            <div class="venue-overview">
+                <h2>VENUE OVERVIEW</h2>
+                <ul>
+                    <li>Total Floor Area: 2,500 sq. meters</li>
+                    <li>Max Capacity: 1,500 guests (standing) / 800 guests (seated)</li>
+                    <li>Parking: 200 regular slots + 20 valet slots</li>
+                    <li>Operating Hours: 8:00 AM – 2:00 AM (event days)</li>
+                    <li>Power Capacity: 500 kVA dedicated supply</li>
+                    <li>Catering: In-house or approved external vendors</li>
+                </ul>
+                <div class="venue-action-buttons">
+                    <a href="#" class="action-btn">Download Floor Plan</a>
+                    <a href="#" class="action-btn">Inquire About Rentals</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <div class="feature-icon orange">🎟️</div>
+                <h3>MAIN PERFORMANCE HALL</h3>
+                <p>Spacious open floor with adjustable modular stage, professional sound system, and customizable LED wall displays. Perfect for concerts, talks, and large-scale gatherings.</p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <div class="feature-icon yellow">🛍️</div>
+                <h3>FOYER & MARKET ZONE</h3>
+                <p>Covered area with high ceilings and natural light – ideal for pop-up stalls, registration desks, and pre-event mingling. Includes dedicated power outlets for vendors.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <div class="feature-icon purple">✨</div>
+                <h3>VIP EXCLUSIVE LOUNGE</h3>
+                <p>Private area with plush seating, premium bar service, and direct access to the stage viewing platform. Includes a small meeting room for artist prep or private gatherings.</p>
+            </div>
+
+        </div>
+
+        <!-- Rules & Accessibility Section -->
+        <div class="rules-section">
+            <h2>ACCESSIBILITY & HOUSE RULES</h2>
+            <div class="rules-content">
+                <div class="rules-column">
+                    <h3>ACCESSIBILITY FEATURES</h3>
+                    <ul>
+                        <li>Slip-resistant ramp access to all floors</li>
+                        <li>Wheelchair-friendly restrooms (2 per floor)</li>
+                        <li>Designated priority seating areas</li>
+                        <li>On-site assistance staff available</li>
+                        <li>Braille signage in key corridors</li>
+                        <li>Hearing loop system in main hall</li>
+                    </ul>
+                </div>
+
+                <div class="rules-column">
+                    <h3>HOUSE RULES & GUIDELINES</h3>
+                    <ul>
+                        <li>No outside food/drinks except sealed water bottles</li>
+                        <li>Professional cameras allowed (no detachable lenses over 50mm without permit)</li>
+                        <li>Smoking permitted only in designated outdoor patio areas</li>
+                        <li>No weapons, illegal substances, or hazardous items on premises</li>
+                        <li>Re-entry allowed with valid wristband or stamped ticket</li>
+                        <li>Pets not permitted except certified service animals</li>
+                        <li>Audio/video recording prohibited unless authorized by event organizers</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Bar -->
+    <footer class="ticket-footer">
+        <p>VENUE UPDATE · VALET PARKING NOW AVAILABLE FOR ALL EVENTS!</p>
+    </footer>
+
+
+</style>
+</head>
+<body>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events</title>
+   <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #EAEAEA;
+  color: #252A34;
+  line-height: 1.6;
+}
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+  --primary: #FF2E63;
+  --secondary: #08D9D6;
+  --accent1: #FFBF00;
+  --accent2: #8A2BE2;
+  --dark: #252A34;
+  --light: #FFFFFF;
+  --bg-light: #F0F0F0;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--light);
+  border-bottom: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  margin: 1rem;
+  border-radius: 4px;
+}
+
+/* ============================================
+   NEUBRUTALISM BUTTONS
+   ============================================ */
+.nav-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-decoration: none; /* Ensure links don't have underlines */
+}
+
+.nav-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+.nav-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px 0px var(--dark);
+}
+
+/* Different colors for variety */
+.nav-btn.secondary { background-color: var(--secondary); }
+.nav-btn.accent1 { background-color: var(--accent1); color: var(--dark); }
+.nav-btn.accent2 { background-color: var(--accent2); }
+.nav-btn.dark { background-color: var(--dark); }
+
+/* Active navigation button style */
+.nav-btn.active {
+  box-shadow: inset 0px 0px 0px 3px var(--dark); /* Inset shadow to look pressed */
+  transform: translate(3px, 3px);
+} 
+   
+   
+   
+   /* ============================================
+   HOMEPAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Main Layout - Two Columns */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 70vh;
+}
+
+/* Featured Event Card */
+.featured-event-card {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 10px 10px 0px 0px var(--dark);
+  padding: 2rem;
+  position: relative;
+}
+
+.event-badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: var(--accent2);
+  color: var(--light);
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+}
+
+.featured-event-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-date-time {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.event-tags-inline {
+  margin-bottom: 1.5rem;
+}
+
+.event-tags-inline .tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.reserve-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  background: linear-gradient(to right, var(--secondary), var(--primary));
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.reserve-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Right Side Text Content */
+.main-headline {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.main-headline .highlight {
+  color: var(--secondary);
+  text-shadow: 2px 2px 0px var(--dark);
+}
+
+.description-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.description-text p {
+  margin-bottom: 1rem;
+}
+
+/* Home Buttons */
+.home-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.home-btn {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  transition: all 0.1s ease;
+}
+
+.explore-btn {
+  background: linear-gradient(to right, var(--secondary), var(--primary));
+}
+
+.tickets-btn {
+  background: linear-gradient(to right, var(--accent1), var(--primary));
+  color: var(--dark) !important;
+}
+
+.home-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Footer Banner */
+.home-footer {
+  background-color: var(--dark);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
+  .main-headline {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-headline {
+    font-size: 2.2rem;
+  }
+  .home-buttons {
+    flex-direction: column;
+  }
+  .event-badge {
+    top: -10px;
+    right: -10px;
+    font-size: 0.9rem;
+  }
+}
+   </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn active">Home</a>
+        <a href="eventsnexus.html" class="nav-btn secondary">Events</a>
+        <a href="ticketnexus.html" class="nav-btn accent1">Tickets</a>
+        <a href="venuenexus.html" class="nav-btn accent2">Venue</a>
+        <a href="contactnexus.html" class="nav-btn">Contact</a>
+        <a href="adminnexus.html" class="nav-btn dark">Admin</a>
+        <a href="loginnexus.html" class="nav-btn secondary">Login</a>
+    </nav>
+
+    <main class="content-area home-layout">
+        <!-- Left Column: Featured Event -->
+        <div class="featured-event-card">
+            <div class="event-badge">ALL ACCESS</div>
+            <h2>PIXEL PARADE</h2>
+            <p class="event-date-time">Saturday, April 12 - 7:00 PM - Nexus Hall</p>
+            
+            <div class="event-tags-inline">
+                <span class="tag teal">Live Set</span>
+                <span class="tag orange">Visuals</span>
+                <span class="tag purple">Pop-Up Market</span>
+            </div>
+
+            <p class="event-description">
+                Expect oversized LED canvases, synth-pop headliners, and a merch lab that prints custom designs in real time.
+            </p>
+
+            <button class="reserve-btn">RESERVE SEATS</button>
+        </div>
+
+        <!-- Right Column: Headline & Info -->
+        <div class="home-text-content">
+            <h1 class="main-headline">
+                WHERE <span class="highlight">LIVE ENERGY</span>,<br>
+                <span class="highlight">BOLD ART</span>, AND<br>
+                <span class="highlight">MAGNETIC PEOPLE</span><br>
+                COLLIDE.
+            </h1>
+
+            <div class="description-text">
+                <p>→ Nexus Events is your vibrant headquarters for pop-forward concerts, creator meetups, and night markets.</p>
+                <p>We craft nights that feel like neon postcards – with heavy bass, sharper memories, and zero boring moments.</p>
+            </div>
+
+            <div class="home-buttons">
+                <a href="eventsnexus.html" class="home-btn explore-btn">EXPLORE EVENTS</a>
+                <a href="ticketnexus.html" class="home-btn tickets-btn">GRAB TICKETS</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Banner -->
+    <footer class="home-footer">
+        <p>NEXT UP: SYNTH WAVE RIOT (APR 22) · SIGN UP FOR EARLY ACCESS!</p>
+    </footer>
+
+</body>
+</html>

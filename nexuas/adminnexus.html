@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events - Admin Control</title>
+   <style>
+   
+      /* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #EAEAEA;
+  color: #252A34;
+  line-height: 1.6;
+}
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+  --primary: #FF2E63;
+  --secondary: #08D9D6;
+  --accent1: #FFBF00;
+  --accent2: #8A2BE2;
+  --dark: #252A34;
+  --light: #FFFFFF;
+  --bg-light: #F0F0F0;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--light);
+  border-bottom: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  margin: 1rem;
+  border-radius: 4px;
+}
+
+/* ============================================
+   NEUBRUTALISM BUTTONS
+   ============================================ */
+.nav-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.nav-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+.nav-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px 0px var(--dark);
+}
+
+/* Different colors for variety */
+.nav-btn.secondary { background-color: var(--secondary); }
+.nav-btn.accent1 { background-color: var(--accent1); color: var(--dark); }
+.nav-btn.accent2 { background-color: var(--accent2); }
+.nav-btn.dark { background-color: var(--dark); }
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+.content-area {
+  margin: 1rem;
+  padding: 2rem;
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 10px 10px 0px 0px var(--dark);
+  border-radius: 4px;
+  min-height: 60vh;
+}
+
+/* Hide all sections by default */
+.section {
+  display: none;
+}
+
+/* Show active section */
+.section.active {
+  display: block;
+}
+
+/* ============================================
+   HEADINGS
+   ============================================ */
+h1, h2, h3 {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+/* ============================================
+   FORMS (LOGIN / REGISTER)
+   ============================================ */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--bg-light);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center { text-align: center; }
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 2rem; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  .navbar { justify-content: center; }
+  .nav-btn { padding: 0.8rem 1.5rem; font-size: 1rem; }
+}
+   
+   
+   
+   
+   
+   
+   
+   /* ============================================
+   ADMIN PAGE LOGIN & DASHBOARD STYLES
+   ============================================ */
+
+/* Hide/Show Logic */
+.admin-login-container,
+.admin-dashboard-container {
+    display: none;
+}
+
+.admin-login-container.active,
+.admin-dashboard-container.active {
+    display: block;
+}
+
+/* ------------------------------ */
+/* LOGIN PAGE STYLES             */
+/* ------------------------------ */
+.admin-login-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    background-color: var(--light);
+    border: 4px solid var(--dark);
+    box-shadow: 12px 12px 0px 0px var(--primary);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.admin-login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px dashed var(--dark);
+}
+
+.admin-login-header .logo-box {
+    background-color: var(--secondary);
+    color: var(--light);
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    border: 3px solid var(--dark);
+    box-shadow: 4px 4px 0px 0px var(--dark);
+    font-size: 0.9rem;
+}
+
+.admin-login-header .logo-text {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--dark);
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0px var(--accent1);
+}
+
+.admin-login-container .page-title {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+}
+
+.admin-login-container p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #444;
+    margin: 0 auto 2rem auto;
+}
+
+.quick-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.quick-link {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid var(--dark);
+    border-radius: 4px;
+    text-decoration: none;
+    box-shadow: 5px 5px 0px 0px var(--dark);
+}
+.quick-link.events { background-color: var(--secondary); color: var(--light); }
+.quick-link.tickets { background-color: var(--accent1); color: var(--dark); }
+.quick-link.venue-ops { background-color: var(--accent2); color: var(--light); }
+.quick-link.inbox { background-color: var(--primary); color: var(--light); }
+
+.login-form-box {
+    background-color: var(--bg-light);
+    border: 4px solid var(--dark);
+    box-shadow: 8px 8px 0px 0px var(--secondary);
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.login-form-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+}
+
+.team-login-info {
+    background-color: var(--secondary);
+    color: var(--light);
+    padding: 0.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    border: 3px solid var(--dark);
+    box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+.login-form-box input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    border: 3px solid var(--dark);
+    border-radius: 4px;
+    background-color: var(--light);
+    box-shadow: 5px 5px 0px 0px var(--dark);
+}
+
+.enter-dashboard-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--primary);
+    color: var(--light);
+    border: 3px solid var(--dark);
+    box-shadow: 6px 6px 0px 0px var(--dark);
+    cursor: pointer;
+}
+
+/* ------------------------------ */
+/* DASHBOARD STYLES              */
+/* ------------------------------ */
+.admin-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--dark);
+    border-bottom: 4px solid var(--primary);
+    box-shadow: 0px 6px 0px 0px var(--accent1);
+}
+
+.admin-dashboard-header .admin-logo-text {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--light);
+    text-transform: uppercase;
+}
+
+.admin-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.party-mode {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    color: var(--light);
+    background-color: var(--accent2);
+    padding: 0.5rem 1rem;
+    border: 3px solid var(--dark);
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    width: 40px;
+    height: 20px;
+    background-color: var(--dark);
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    border: 2px solid var(--light);
+}
+.toggle-switch::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    background-color: var(--light);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+.toggle-switch.on::before {
+    left: 22px;
+    background-color: var(--accent1);
+}
+
+.logout-btn-dashboard {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--primary);
+    color: var(--light);
+    border: 3px solid var(--dark);
+    box-shadow: 4px 4px 0px 0px var(--dark);
+    cursor: pointer;
+}
+
+/* Dashboard Content */
+.admin-content {
+    background-color: var(--light);
+    border: 4px solid var(--dark);
+    box-shadow: 10px 10px 0px 0px var(--dark);
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.overview-card {
+    background-color: var(--bg-light);
+    border: 3px solid var(--dark);
+    box-shadow: 6px 6px 0px 0px var(--accent2);
+    padding: 1.5rem;
+    text-align: center;
+}
+.overview-card h3 { font-size: 1.2rem; color: #555; }
+.overview-card p { font-size: 2.5rem; font-weight: 900; color: var(--dark); }
+
+/* Example Table */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+.admin-table th, .admin-table td {
+    border: 3px solid var(--dark);
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+.admin-table th {
+    background-color: var(--dark);
+    color: var(--light);
+    text-transform: uppercase;
+}
+.admin-table tbody tr:nth-child(even) {
+    background-color: var(--bg-light);
+}
+
+/* Footer */
+.admin-footer {
+    background-color: var(--dark);
+    color: var(--light);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: 4px solid var(--primary);
+}
+
+/* Party Mode Animation */
+@keyframes bgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-login-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    .admin-login-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .admin-login-header .logo-text { font-size: 1.8rem; }
+    .admin-login-container .page-title { font-size: 2.2rem; }
+    .quick-links { flex-direction: column; gap: 0.5rem; }
+    .quick-link { width: 80%; margin: 0 auto; }
+    .login-form-box { padding: 1.5rem; }
+    .enter-dashboard-btn { font-size: 1rem; padding: 0.8rem; }
+
+    .admin-dashboard-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .admin-nav-right {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.8rem;
+    }
+    .party-mode { width: 100%; justify-content: center; }
+    .logout-btn-dashboard { width: 100%; text-align: center; }
+
+    .admin-content { padding: 1.5rem; }
+    .overview-cards { grid-template-columns: 1fr 1fr; }
+    .overview-card { padding: 1rem; }
+    .overview-card p { font-size: 1.8rem; }
+    .admin-table th, .admin-table td { padding: 0.6rem 0.8rem; font-size: 0.85rem; }
+
+    .admin-footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="eventsnexus.html" class="nav-btn secondary">Events</a>
+        <a href="ticketnexus.html" class="nav-btn accent1">Tickets</a>
+        <a href="venuenexus.html" class="nav-btn accent2">Venue</a>
+        <a href="contact.html" class="nav-btn">Contact</a>
+        <a href="adminnexus.html" class="nav-btn dark active">Admin</a>
+        <a href="loginnexus.html" class="nav-btn secondary">Login</a>
+    </nav>
+
+    <main class="content-area">
+        
+        <!-- LOGIN VIEW (Visible first) -->
+        <div id="loginView" class="admin-login-container active">
+            <div class="admin-login-header">
+                <div class="logo-box">EST. 2024</div>
+                <div class="logo-text">NEXUS EVENTS</div>
+            </div>
+            <h1 class="page-title">ADMIN CONTROL ROOM</h1>
+            <p>Authorized team only. Log in to manage events, ticket tiers, venue schedules, and guest communications.</p>
+
+            <div class="quick-links">
+                <a href="#events" class="quick-link events">Events</a>
+                <a href="#orders" class="quick-link tickets">Tickets</a>
+                <a href="#venue" class="quick-link venue-ops">Venue Ops</a>
+                <a href="#inquiries" class="quick-link inbox">Inbox</a>
+            </div>
+
+            <div class="login-form-box">
+                <h2>ADMIN LOGIN</h2>
+                <div class="team-login-info">Team Login: admin / nexus2026</div>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Admin ID</label>
+                        <input type="text" id="username" placeholder="Enter ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter Password" required>
+                    </div>
+                    <button type="submit" class="enter-dashboard-btn">ENTER DASHBOARD</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- DASHBOARD VIEW (Hidden until login) -->
+        <div id="dashboardView" class="admin-dashboard-container">
+            
+            <div class="admin-dashboard-header">
+                <div class="admin-logo-text">NEXUS EVENTS</div>
+                <div class="admin-nav-right">
+                    <div class="party-mode">
+                        Party Mode <span id="toggleSwitch" class="toggle-switch off"></span> OFF
+                    </div>
+                    <button id="logoutBtn" class="logout-btn-dashboard">LOGOUT</button>
+                </div>
+            </div>
+
+            <div class="admin-content">
+                <h1 class="page-title">DASHBOARD OVERVIEW</h1>
+
+                <!-- Overview Cards -->
+                <div class="overview-cards">
+                    <div class="overview-card">
+                        <h3>Upcoming Events</h3>
+                        <p>5</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Total Tickets Sold</h3>
+                        <p>1,234</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>Recent Orders</h3>
+                        <p>15</p>
+                    </div>
+                    <div class="overview-card">
+                        <h3>New Inquiries</h3>
+                        <p>3</p>
+                    </div>
+                </div>
+
+                <!-- Example Table Content -->
+                <h2 style="margin-top: 2rem; text-decoration: underline;">Latest Orders</h2>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Event</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>NEX-001</td><td>Juan Dela Cruz</td><td>Synth Wave Riot</td><td>Confirmed</td></tr>
+                        <tr><td>NEX-002</td><td>Maria Clara</td><td>Market Nights</td><td>Pending</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="admin-footer">
+        <div>NEXUS EVENTS - ADMIN ACCESS</div>
+        <div>© 2026 Nexus Events. All rights reserved.</div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginView = document.getElementById('loginView');
+            const dashboardView = document.getElementById('dashboardView');
+            const loginForm = document.getElementById('loginForm');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const toggleSwitch = document.getElementById('toggleSwitch');
+
+            // LOGIN FUNCTION
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const user = document.getElementById('username').value;
+                const pass = document.getElementById('password').value;
+
+                // Check credentials
+                if(user === 'admin' && pass === 'nexus2026') {
+                    // Switch views
+                    loginView.classList.remove('active');
+                    dashboardView.classList.add('active');
+                } else {
+                    alert('ACCESS DENIED! Wrong ID or Password.');
+                }
+            });
+
+            // LOGOUT FUNCTION
+            logoutBtn.addEventListener('click', function() {
+                dashboardView.classList.remove('active');
+                loginView.classList.add('active');
+                // Clear form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            });
+
+            // PARTY MODE TOGGLE
+            toggleSwitch.addEventListener('click', function() {
+                this.classList.toggle('on');
+                this.classList.toggle('off');
+                
+                const statusText = this.parentElement;
+                if(this.classList.contains('on')) {
+                    statusText.innerHTML = `Party Mode <span id="toggleSwitch" class="toggle-switch on"></span> ON`;
+                    document.body.style.background = 'linear-gradient(135deg, #ff0055 0%, #00fff2 50%, #ff0055 100%)';
+                    document.body.style.backgroundSize = '400% 400%';
+                    document.body.style.animation = 'bgShift 5s linear infinite';
+                } else {
+                    statusText.innerHTML = `Party Mode <span id="toggleSwitch" class="toggle-switch off"></span> OFF`;
+                    document.body.style.background = 'linear-gradient(135deg, #f8cdda 0%, #d1f7f6 50%, #f8cdda 100%)';
+                    document.body.style.animation = 'none';
+                }
+            });
+
+            // Add animation keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes bgShift {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+
+</body>
+</html>

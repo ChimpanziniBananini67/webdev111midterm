@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events - Events Calendar</title>
+  <style>
+  
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #EAEAEA;
+  color: #252A34;
+  line-height: 1.6;
+}
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+  --primary: #FF2E63;
+  --secondary: #08D9D6;
+  --accent1: #FFBF00;
+  --accent2: #8A2BE2;
+  --dark: #252A34;
+  --light: #FFFFFF;
+  --bg-light: #F0F0F0;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--light);
+  border-bottom: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  margin: 1rem;
+  border-radius: 4px;
+}
+
+/* ============================================
+   NEUBRUTALISM BUTTONS
+   ============================================ */
+.nav-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-decoration: none; /* Ensure links don't have underlines */
+}
+
+.nav-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+.nav-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px 0px var(--dark);
+}
+
+/* Different colors for variety */
+.nav-btn.secondary { background-color: var(--secondary); }
+.nav-btn.accent1 { background-color: var(--accent1); color: var(--dark); }
+.nav-btn.accent2 { background-color: var(--accent2); }
+.nav-btn.dark { background-color: var(--dark); }
+
+/* Active navigation button style */
+.nav-btn.active {
+  box-shadow: inset 0px 0px 0px 3px var(--dark); /* Inset shadow to look pressed */
+  transform: translate(3px, 3px);
+} 
+  
+  /* ============================================
+   HOMEPAGE SPECIFIC STYLES
+   ============================================ */
+
+/* Main Layout - Two Columns */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  min-height: 70vh;
+}
+
+/* Featured Event Card */
+.featured-event-card {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 10px 10px 0px 0px var(--dark);
+  padding: 2rem;
+  position: relative;
+}
+
+.event-badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color: var(--accent2);
+  color: var(--light);
+  padding: 0.6rem 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+}
+
+.featured-event-card h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-date-time {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #444;
+}
+
+.event-tags-inline {
+  margin-bottom: 1.5rem;
+}
+
+.event-tags-inline .tag {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.reserve-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  background: linear-gradient(to right, var(--secondary), var(--primary));
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.reserve-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Right Side Text Content */
+.main-headline {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.main-headline .highlight {
+  color: var(--secondary);
+  text-shadow: 2px 2px 0px var(--dark);
+}
+
+.description-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.description-text p {
+  margin-bottom: 1rem;
+}
+
+/* Home Buttons */
+.home-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.home-btn {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  transition: all 0.1s ease;
+}
+
+.explore-btn {
+  background: linear-gradient(to right, var(--secondary), var(--primary));
+}
+
+.tickets-btn {
+  background: linear-gradient(to right, var(--accent1), var(--primary));
+  color: var(--dark) !important;
+}
+
+.home-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Footer Banner */
+.home-footer {
+  background-color: var(--dark);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   EVENTS PAGE SPECIFIC STYLES
+   ============================================ */
+
+.page-title {
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.page-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--dark);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Search Bar */
+.search-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#eventSearch {
+  width: 80%;
+  max-width: 400px;
+  font-size: 1.1rem;
+  box-shadow: 7px 7px 0px 0px var(--secondary);
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--light);
+  color: var(--dark);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.filter-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 3px 3px 0px 0px var(--dark);
+}
+
+.filter-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px 0px var(--dark);
+}
+
+.filter-btn.active {
+  background-color: var(--dark);
+  color: var(--light);
+  box-shadow: inset 0px 0px 0px 3px var(--dark);
+}
+
+/* Events Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Event Card */
+.event-card {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  border-radius: 4px;
+  box-shadow: 8px 8px 0px 0px var(--primary);
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 0px 0px var(--primary);
+}
+
+.event-date {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--light);
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Specific date tag colors */
+.event-date.orange { background-color: var(--primary); }
+.event-date.teal { background-color: var(--secondary); }
+.event-date.yellow { background-color: var(--accent1); color: var(--dark); }
+.event-date.purple { background-color: var(--accent2); }
+
+/* Event Card Content */
+.event-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: var(--dark);
+}
+
+.event-card p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.event-tags {
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  display: inline-block;
+  background-color: var(--bg-light);
+  color: var(--dark);
+  padding: 0.4rem 0.8rem;
+  border: 2px solid var(--dark);
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+/* Get Tickets Button */
+.get-tickets-btn {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--accent1);
+  color: var(--dark);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-align: center;
+  margin-top: auto;
+}
+
+.get-tickets-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px var(--dark);
+}
+
+/* ============================================
+   TICKETS PAGE SPECIFIC STYLES
+   ============================================ */
+
+.ticket-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Ticket Tiers */
+.tier-card {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  padding: 1.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.tier-card.featured {
+  transform: scale(1.02);
+  box-shadow: 10px 10px 0px 0px var(--primary);
+  border-color: var(--primary);
+}
+
+.tier-tag {
+  position: absolute;
+  top: -12px;
+  left: 1rem;
+  padding: 0.4rem 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+  color: var(--light);
+}
+
+.tier-tag.teal { background-color: var(--secondary); }
+.tier-tag.orange { background-color: var(--primary); }
+.tier-tag.purple { background-color: var(--accent2); }
+
+.tier-card h3 {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tier-card .price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+.tier-card ul {
+  list-style: square;
+  padding-left: 1.5rem;
+}
+
+.tier-card ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Order Form */
+.order-form-section {
+  background-color: var(--bg-light);
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  padding: 1.5rem;
+}
+
+.order-form-section h2,
+.ticket-tiers-section h2,
+.track-order-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+}
+
+select {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--light);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+}
+
+small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.submit-order-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--accent1);
+  color: var(--dark);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin-top: 1rem;
+}
+
+.submit-order-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Track Order Section */
+.track-order-section {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.track-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.track-btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--secondary);
+  color: var(--light);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+  cursor: pointer;
+}
+
+/* Ticket Footer Bar */
+.ticket-footer {
+  background-color: var(--dark);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 1024px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
+  .main-headline {
+    font-size: 3rem;
+  }
+  .ticket-container {
+    grid-template-columns: 1fr;
+  }
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  .navbar { justify-content: center; padding: 1rem; }
+  .nav-btn { padding: 0.8rem 1.2rem; font-size: 1rem; }
+
+  .page-title { font-size: 2.5rem; }
+  .page-subtitle { font-size: 1rem; }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+  .event-card {
+    box-shadow: 6px 6px 0px 0px var(--primary);
+  }
+  .event-card:hover {
+    box-shadow: 8px 8px 0px 0px var(--primary);
+  }
+  .event-date {
+    top: -10px;
+    right: -10px;
+    font-size: 0.9rem;
+  }
+  #eventSearch {
+    width: 95%;
+  }
+  .filter-buttons {
+    justify-content: center;
+  }
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  .track-form {
+    grid-template-columns: 1fr;
+  }
+  .tier-card .price {
+    font-size: 2rem;
+  }
+  .home-buttons {
+    flex-direction: column;
+  }
+  .event-badge {
+    top: -10px;
+    right: -10px;
+    font-size: 0.9rem;
+  }
+}
+  
+  </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+      <nav class="navbar">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="eventsnexus.html" class="nav-btn secondary">Events</a>
+        <a href="ticketnexus.html" class="nav-btn accent1">Tickets</a>
+        <a href="venuenexus.html" class="nav-btn accent2 active">Venue</a>
+        <a href="contactnexus.html" class="nav-btn">Contact</a>
+        <a href="adminnexus.html" class="nav-btn dark">Admin</a>
+        <a href="loginnexus.html" class="nav-btn secondary">Login</a>
+    </nav>
+
+    <main class="content-area">
+        <h1 class="page-title">EVENTS CALENDAR</h1>
+        <p class="page-subtitle">Browse all upcoming experiences – filter by vibe to find your perfect match!</p>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="eventSearch" placeholder="Search by name or vibe...">
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">ALL</button>
+            <button class="filter-btn" data-filter="live">LIVE</button>
+            <button class="filter-btn" data-filter="market">MARKET</button>
+            <button class="filter-btn" data-filter="meetup">MEETUP</button>
+            <button class="filter-btn" data-filter="workshop">WORKSHOP</button>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="events-grid">
+
+            <!-- Event Card 1: Synth Wave Riot -->
+            <div class="event-card" data-category="live">
+                <div class="event-date orange">APR 22</div>
+                <h3>SYNTH WAVE RIOT</h3>
+                <p>Headlining electronic acts with immersive LED wall displays and bass-heavy sound systems.</p>
+                <div class="event-tags">
+                    <span class="tag">Live</span>
+                    <span class="tag">Visuals</span>
+                    <span class="tag">Music</span>
+                </div>
+                <button class="get-tickets-btn">GET TICKETS</button>
+            </div>
+
+            <!-- Event Card 2: Indie Rock Throwdown -->
+            <div class="event-card" data-category="live">
+                <div class="event-date orange">MAY 18</div>
+                <h3>INDIE ROCK THROWDOWN</h3>
+                <p>Underground bands bring raw energy to the stage with acoustic openers and mosh pit zones.</p>
+                <div class="event-tags">
+                    <span class="tag">Live</span>
+                    <span class="tag">Music</span>
+                    <span class="tag">Local</span>
+                </div>
+                <button class="get-tickets-btn">GET TICKETS</button>
+            </div>
+
+            <!-- Event Card 3: Metro Market Nights -->
+            <div class="event-card" data-category="market">
+                <div class="event-date teal">APR 18</div>
+                <h3>METRO MARKET NIGHTS</h3>
+                <p>Street eats, pop-up brands, and a rotating DJ line spinning funk and soul tracks.</p>
+                <div class="event-tags">
+                    <span class="tag">Market</span>
+                    <span class="tag">Food</span>
+                    <span class="tag">Shopping</span>
+                </div>
+                <button class="get-tickets-btn">GET TICKETS</button>
+            </div>
+
+            <!-- Event Card 4: Pop-Up Style Arcade -->
+            <div class="event-card" data-category="market">
+                <div class="event-date teal">MAY 10</div>
+                <h3>POP-UP STYLE ARCADE</h3>
+                <p>Local fashion drops, style swaps, and live remix booths with vintage arcade games.</p>
+                <div class="event-tags">
+                    <span class="tag">Market</span>
+                    <span class="tag">Fashion</span>
+                    <span class="tag">Games</span>
+                </div>
+                <button class="get-tickets-btn">GET TICKETS</button>
+            </div>
+
+            <!-- Event Card 5: Creator Connect Mixer -->
+            <div class="event-card" data-category="meetup">
+                <div class="event-date yellow">APR 30</div>
+                <h3>CREATOR CONNECT MIXER</h3>
+                <p>Network with artists, designers, and digital creators over craft cocktails and small bites.</p>
+                <div class="event-tags">
+                    <span class="tag">Meetup</span>
+                    <span class="tag">Network</span>
+                    <span class="tag">Creators</span>
+                </div>
+                <button class="get-tickets-btn">REGISTER NOW</button>
+            </div>
+
+            <!-- Event Card 6: Tech & Culture Summit -->
+            <div class="event-card" data-category="workshop">
+                <div class="event-date yellow">MAY 25</div>
+                <h3>TECH & CULTURE SUMMIT</h3>
+                <p>Explore the intersection of technology, art, and society with industry leaders.</p>
+                <div class="event-tags">
+                    <span class="tag">Workshop</span>
+                    <span class="tag">Tech</span>
+                    <span class="tag">Talks</span>
+                </div>
+                <button class="get-tickets-btn">REGISTER NOW</button>
+            </div>
+
+            <!-- Event Card 7: Neon Art Lab -->
+            <div class="event-card" data-category="workshop">
+                <div class="event-date purple">MAY 05</div>
+                <h3>NEON ART LAB</h3>
+                <p>Hands-on workshop learning the basics of neon sign making and light design.</p>
+                <div class="event-tags">
+                    <span class="tag">Workshop</span>
+                    <span class="tag">Art</span>
+                    <span class="tag">Hands-on</span>
+                </div>
+                <button class="get-tickets-btn">REGISTER NOW</button>
+            </div>
+
+            <!-- Event Card 8: DJ Production Basics -->
+            <div class="event-card" data-category="workshop">
+                <div class="event-date purple">MAY 12</div>
+                <h3>DJ PRODUCTION BASICS</h3>
+                <p>Learn how to mix tracks, use equipment, and produce your own beats.</p>
+                <div class="event-tags">
+                    <span class="tag">Workshop</span>
+                    <span class="tag">Music</span>
+                    <span class="tag">Skills</span>
+                </div>
+                <button class="get-tickets-btn">REGISTER NOW</button>
+            </div>
+
+        </div> <!-- End Events Grid -->
+    </main>
+
+    <!-- Bottom Banner -->
+    <footer class="home-footer">
+        <p>EVENT RADAR · 8 NEW EXPERIENCES ADDED THIS WEEK!</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const eventCards = document.querySelectorAll('.event-card');
+
+            // Filter functionality
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    eventCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.getElementById('eventSearch');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                eventCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

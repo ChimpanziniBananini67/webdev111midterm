@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Events - Get Your Tickets</title>
+   <style>
+   
+     * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #EAEAEA;
+  color: #252A34;
+  line-height: 1.6;
+}
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+:root {
+  --primary: #FF2E63;
+  --secondary: #08D9D6;
+  --accent1: #FFBF00;
+  --accent2: #8A2BE2;
+  --dark: #252A34;
+  --light: #FFFFFF;
+  --bg-light: #F0F0F0;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+  background-color: var(--light);
+  border-bottom: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  margin: 1rem;
+  border-radius: 4px;
+}
+
+/* ============================================
+   NEUBRUTALISM BUTTONS
+   ============================================ */
+.nav-btn {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--primary);
+  color: var(--light);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-decoration: none; /* Ensure links don't have underlines */
+}
+
+.nav-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+.nav-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 2px 2px 0px 0px var(--dark);
+}
+
+/* Different colors for variety */
+.nav-btn.secondary { background-color: var(--secondary); }
+.nav-btn.accent1 { background-color: var(--accent1); color: var(--dark); }
+.nav-btn.accent2 { background-color: var(--accent2); }
+.nav-btn.dark { background-color: var(--dark); }
+
+/* Active navigation button style */
+.nav-btn.active {
+  box-shadow: inset 0px 0px 0px 3px var(--dark); /* Inset shadow to look pressed */
+  transform: translate(3px, 3px);
+} 
+   
+   
+   /* ============================================
+   TICKETS PAGE SPECIFIC STYLES
+   ============================================ */
+
+.ticket-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Ticket Tiers Grid */
+.tier-card {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  padding: 1.5rem;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.tier-card.featured {
+  transform: scale(1.02);
+  box-shadow: 10px 10px 0px 0px var(--primary);
+  border-color: var(--primary);
+}
+
+.tier-tag {
+  position: absolute;
+  top: -12px;
+  left: 1rem;
+  padding: 0.4rem 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+  color: var(--light);
+}
+
+.tier-tag.teal { background-color: var(--secondary); }
+.tier-tag.orange { background-color: var(--primary); }
+.tier-tag.purple { background-color: var(--accent2); }
+
+.tier-card h3 {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.tier-card .price {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 1rem;
+}
+
+.tier-card ul {
+  list-style: square;
+  padding-left: 1.5rem;
+}
+
+.tier-card ul li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Order Form */
+.order-form-section {
+  background-color: var(--bg-light);
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  padding: 1.5rem;
+}
+
+.order-form-section h2,
+.ticket-tiers-section h2,
+.track-order-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-decoration: underline;
+}
+
+select {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--light);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+}
+
+small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.submit-order-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--accent1);
+  color: var(--dark);
+  box-shadow: 6px 6px 0px 0px var(--dark);
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin-top: 1rem;
+}
+
+.submit-order-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0px 0px var(--dark);
+}
+
+/* Track Order Section */
+.track-order-section {
+  background-color: var(--light);
+  border: 4px solid var(--dark);
+  box-shadow: 8px 8px 0px 0px var(--dark);
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.track-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.track-btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 3px solid var(--dark);
+  border-radius: 4px;
+  background-color: var(--secondary);
+  color: var(--light);
+  box-shadow: 5px 5px 0px 0px var(--dark);
+  cursor: pointer;
+}
+
+/* Ticket Footer Bar */
+.ticket-footer {
+  background-color: var(--dark);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .ticket-container {
+    grid-template-columns: 1fr;
+  }
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .track-form {
+    grid-template-columns: 1fr;
+  }
+  .tier-card .price {
+    font-size: 2rem;
+  }
+}
+   
+   
+   
+   </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+      <nav class="navbar">
+        <a href="index.html" class="nav-btn">Home</a>
+        <a href="eventsnexus.html" class="nav-btn secondary">Events</a>
+        <a href="ticketnexus.html" class="nav-btn accent1">Tickets</a>
+        <a href="venuenexus.html" class="nav-btn accent2 active">Venue</a>
+        <a href="contactnexus.html" class="nav-btn">Contact</a>
+        <a href="adminnexus.html" class="nav-btn dark">Admin</a>
+        <a href="loginnexus.html" class="nav-btn secondary">Login</a>
+    </nav>
+
+    <main class="content-area">
+        <h1 class="page-title">GET YOUR TICKETS</h1>
+        <p class="page-subtitle">Choose your tier, customize your order, and lock in your spot for unforgettable nights!</p>
+
+        <div class="ticket-container">
+            <!-- Left Column: Ticket Tiers -->
+			
+            <div class="ticket-tiers">
+                <h2 class="tier-heading">Select Your Ticket Tier</h2>
+                <div class="tier-grid">
+               
+                    <!-- General Pass -->
+                    <div class="tier-card">
+                        <div class="tier-tag teal">General</div>
+                        <h3>ENTRY PASS</h3>
+                        <p class="price">₱1,200</p>
+                        <ul>
+                            <li>Full event entry access</li>
+                            <li>Standard food stall access</li>
+                            <li>Main stage viewing areas</li>
+                            <li>Basic event merch access</li>
+                        </ul>
+                    </div>
+
+                    <!-- Premium Pass -->
+                    <div class="tier-card featured">
+                        <div class="tier-tag orange">Premium</div>
+                        <h3>PLUS PACK</h3>
+                        <p class="price">₱2,500</p>
+                        <ul>
+                            <li>All General Admission perks</li>
+                            <li>Priority food stall access</li>
+                            <li>VIP viewing platform access</li>
+                            <li>Limited-edition merch item</li>
+                            <li>Complimentary drink token</li>
+                        </ul>
+                    </div>
+
+                    <!-- VIP Pass -->
+                    <div class="tier-card">
+                        <div class="tier-tag purple">VIP</div>
+                        <h3>ALL ACCESS</h3>
+                        <p class="price">₱4,800</p>
+                        <ul>
+                            <li>All Premium tier perks</li>
+                            <li>Exclusive backstage tour</li>
+                            <li>Artist meet-and-greet session</li>
+                            <li>Custom merch bundle</li>
+                            <li>Unlimited non-alcoholic drinks</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Column: Order Form -->
+            <div class="order-form-section">
+                <h2>COMPLETE YOUR ORDER</h2>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="eventSelect">Select Event</label>
+                        <select id="eventSelect" required>
+                            <option value="">-- Choose An Event --</option>
+                            <option value="synthwave">Synth Wave Riot - Apr 22</option>
+                            <option value="indie">Indie Rock Throwdown - May 18</option>
+                            <option value="market">Metro Market Nights - Apr 18</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ticketQty">Number of Tickets</label>
+                        <input type="number" id="ticketQty" value="1" min="1" max="10" required>
+                        <small>Max 10 tickets per order</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Juan Dela Cruz" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact">Contact Number</label>
+                        <input type="tel" id="contact" placeholder="+63 912 345 6789" required>
+                    </div>
+
+                    <button type="submit" class="submit-order-btn">PROCEED TO PAYMENT</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Track Order Section -->
+        <div class="track-order-section">
+            <h2>TRACK YOUR EXISTING ORDER</h2>
+            <p>Enter your order ID and email to view status & download tickets</p>
+            <div class="track-form">
+                <input type="text" id="orderId" placeholder="Enter Order ID (e.g., NEX-2024-001)">
+                <input type="email" id="trackEmail" placeholder="Enter Your Email">
+            </div>
+            <button class="track-btn">TRACK ORDER</button>
+        </div>
+
+    </main>
+
+    <!-- Footer Bar -->
+    <footer class="ticket-footer">
+        <p>NEED GROUP RATES? EMAIL GROUPS@NEXUSEVENTS.PH - ALL SALES FINAL - SEE TERMS FOR REFUND POLICIES!</p>
+    </footer>
+
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Order submitted!');
+        });
+    </script>
+
+</body>
+</html>
+   
