@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Freshbite Prep</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root { --primary: #2E5B3C; --accent: #FFD150; --bg: #F5F5F0; --white: #ffffff; --text: #333; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); display: flex; color: var(--text); }
+
+        /* Sidebar (Dashboard Consistent) */
+        .sidebar { width: 260px; height: 100vh; background: white; border-right: 1px solid #eee; display: flex; flex-direction: column; padding: 30px 20px; position: fixed; box-sizing: border-box; }
+        .logo-area { font-weight: 800; font-size: 20px; color: var(--primary); margin-bottom: 30px; padding-left: 15px; }
+        .nav-btn { padding: 12px 15px; margin: 4px 0; border-radius: 10px; text-decoration: none; color: #666; font-weight: 500; transition: 0.2s; border: none; background: none; text-align: left; font-size: 15px; cursor: pointer; }
+        .nav-btn:hover { background: #f0f4f1; color: var(--primary); }
+        .nav-btn.active { background: var(--primary); color: white; }
+        .logout-btn { margin-top: auto; color: #cc0000; border-top: 1px solid #eee; padding-top: 20px; }
+
+        /* Main Content Wrapper */
+        .about-container { margin-left: 260px; width: calc(100% - 260px); box-sizing: border-box; }
+
+        /* Hero Section */
+        .about-hero { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://unsplash.com');
+            background-size: cover; background-position: center; height: 500px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: white; text-align: center; padding: 0 20px;
+        }
+        .about-hero h1 { font-size: 56px; font-weight: 800; margin: 0; letter-spacing: -1px; }
+        .about-hero p { font-size: 22px; max-width: 700px; opacity: 0.9; margin-top: 15px; font-weight: 400; }
+
+        /* Mission Grid */
+        .content-section { padding: 100px 80px; background: var(--white); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .section-title { color: var(--primary); font-size: 32px; font-weight: 800; margin-bottom: 25px; position: relative; }
+        .section-title::after { content: ""; display: block; width: 50px; height: 4px; background: var(--accent); margin-top: 10px; }
+        .about-text { font-size: 17px; color: #555; line-height: 1.8; }
+
+        /* Values Grid */
+        .values-section { padding: 100px 80px; background: var(--bg); text-align: center; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
+        .value-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .value-card h4 { font-size: 20px; margin: 15px 0; color: var(--primary); }
+        .value-card p { font-size: 15px; color: #777; line-height: 1.6; }
+
+        /* Journey Timeline */
+        .timeline { max-width: 800px; margin: 60px auto 0 auto; text-align: left; }
+        .timeline-item { border-left: 2px solid var(--primary); padding-left: 30px; position: relative; padding-bottom: 40px; }
+        .timeline-item::before { content: ""; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; background: var(--accent); border-radius: 50%; }
+        .year { font-weight: 800; color: var(--primary); font-size: 18px; }
+
+        /* Chef Cards */
+        .chef-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; margin-top: 50px; }
+        .chef-card { text-align: center; background: white; padding: 20px; border-radius: 24px; transition: 0.3s; }
+        .chef-card:hover { transform: translateY(-10px); }
+        .chef-img { width: 100%; height: 320px; border-radius: 18px; object-fit: cover; margin-bottom: 20px; filter: grayscale(100%); transition: 0.5s; }
+        .chef-card:hover .chef-img { filter: grayscale(0%); }
+
+        /* Final CTA */
+        .cta-footer { background: var(--primary); color: white; padding: 80px 20px; text-align: center; margin-top: 50px; border-radius: 40px 40px 0 0; }
+        .cta-btn { background: var(--accent); color: var(--primary); padding: 18px 40px; border-radius: 12px; font-weight: 800; text-decoration: none; font-size: 18px; display: inline-block; margin-top: 30px; transition: 0.3s; }
+        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo-area">Freshbite Prep</div>
+        <a href="index.html" class="nav-btn">Dashboard</a>
+        <a href="menu.html" class="nav-btn">Weekly Menu</a>
+        <a href="plan.html" class="nav-btn">Subscription Plan</a>
+        <a href="delivery.html" class="nav-btn">Delivery Tracker</a>
+        <a href="billings.html" class="nav-btn">Order History</a>
+        <a href="about.html" class="nav-btn active">About Us</a>
+        <a href="contact.html" class="nav-btn">Contact Support</a>
+        <button class="nav-btn logout-btn" onclick="logout()">Log Out</button>
+    </nav>
+
+    <main class="about-container">
+        <section class="about-hero">
+            <h1>Beyond the Plate.</h1>
+            <p>We're redefining convenience by proving that healthy eating doesn't have to be a compromise.</p>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="content-section">
+            <div class="grid-2">
+                <div>
+                    <div class="section-title">Our Culinary Philosophy</div>
+                    <p class="about-text">
+                        Freshbite Prep was founded in 2021 when a clinical nutritionist and a Michelin-trained chef realized the "healthy" meal prep industry was failing on flavor and transparency.
+                        <br><br>
+                        We believe food is medicine, but it should also be a celebration. By removing the friction of grocery shopping, chopping, and macro-calculating, we give you back 10+ hours a week to focus on what matters—your performance and your family.
+                    </p>
+                </div>
+                <img src="images/cook.jpeg" style="width: 100%; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);" alt="Chef Cooking">
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="values-section">
+            <h2 style="font-size: 32px; font-weight: 800;">Our Three Pillars</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div style="font-size: 40px;">🌱</div>
+                    <h4>Uncompromising Quality</h4>
+                    <p>We source 100% organic produce and grass-fed proteins. If it's not good enough for our table, it's not in your box.</p>
+                </div>
+                <div class="value-card">
+                    <div style="font-size: 40px;">👨‍🍳</div>
+                    <h4>Chef-Led Innovation</h4>
+                    <p>Our menus rotate weekly to prevent "prep fatigue." We utilize global flavors and seasonal harvests.</p>
+                </div>
+                <div class="value-card">
+                    <div style="font-size: 40px;">🌍</div>
+                    <h4>Zero-Waste Promise</h4>
+                    <p>From compostable containers to our electric delivery fleet, your health shouldn't cost the Earth.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section class="content-section" style="background: white;">
+            <div style="text-align: center;">
+                <div class="section-title" style="display: inline-block;">Our Journey</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="year">2021</div>
+                        <p>Launched in a small communal kitchen in Brooklyn with just 50 subscribers.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="year">2023</div>
+                        <p>Expanded to our first solar-powered culinary center and hit 100k meals delivered.</p>
+                    </div>
+                    <div class="timeline-item" style="padding-bottom: 0;">
+                        <div class="year">Today</div>
+                        <p>Serving over 10,000 households nationwide with a team of 15 executive chefs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="content-section" style="background: var(--bg);">
+            <div style="text-align: center;">
+                <div class="section-title">The Culinary Minds</div>
+                <div class="chef-grid">
+                    <div class="chef-card">
+                        <img src="images/elena_rodriguez.jpeg" class="chef-img" alt="Chef">
+                        <div style="font-weight: 800; font-size: 18px;">Elena Rodriguez</div>
+                        <div style="color: var(--primary); font-size: 14px; font-weight: 600; margin-top: 5px;">Executive Chef</div>
+                    </div>
+                    <div class="chef-card">
+                        <img src="images/marcus_thorne.jpeg" class="chef-img" alt="Chef">
+                        <div style="font-weight: 800; font-size: 18px;">Marcus Thorne</div>
+                        <div style="color: var(--primary); font-size: 14px; font-weight: 600; margin-top: 5px;">Head of Nutrition</div>
+                    </div>
+                    <div class="chef-card">
+                        <img src="images/sarahjenkins.jpeg" class="chef-img" alt="Chef">
+                        <div style="font-weight: 800; font-size: 18px;">Sarah Jenkins</div>
+                        <div style="color: var(--primary); font-size: 14px; font-weight: 600; margin-top: 5px;">Pastry & Health-Snacks</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="cta-footer">
+            <h2 style="font-size: 40px; margin: 0;">Ready to Taste the Difference?</h2>
+            <p style="opacity: 0.8; font-size: 18px; margin-top: 10px;">Join 10,000+ others achieving their health goals with Freshbite.</p>
+            <a href="plans.html" class="cta-btn">View My Plan</a>
+        </section>
+    </main>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

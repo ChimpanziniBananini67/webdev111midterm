@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Menu | Freshbite Prep</title>
+    <!-- Premium Font -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root { --primary: #2E5B3C; --accent: #FFD150; --bg: #F5F5F0; --white: #ffffff; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); display: flex; }
+
+        /* Sidebar (Fixed Consistency) */
+        .sidebar { width: 260px; height: 100vh; background: white; border-right: 1px solid #eee; display: flex; flex-direction: column; padding: 30px 20px; position: fixed; box-sizing: border-box; }
+        .logo-area { font-weight: 800; font-size: 20px; color: var(--primary); margin-bottom: 30px; padding-left: 15px; }
+        .nav-btn { padding: 12px 15px; margin: 4px 0; border-radius: 10px; text-decoration: none; color: #666; font-weight: 500; transition: 0.2s; border: none; background: none; text-align: left; font-size: 15px; cursor: pointer; }
+        .nav-btn:hover { background: #f0f4f1; color: var(--primary); }
+        .nav-btn.active { background: var(--primary); color: white; }
+
+        /* Main Content */
+        .menu-container { margin-left: 260px; padding: 50px; width: calc(100% - 260px); box-sizing: border-box; }
+        .menu-header h1 { font-size: 36px; font-weight: 800; color: #333; margin: 0; }
+        .menu-header p { color: #666; margin: 10px 0 40px 0; font-size: 18px; }
+
+        /* Tabs Selection */
+        .filter-tabs { display: flex; gap: 12px; margin-bottom: 40px; }
+        .tab { padding: 12px 24px; background: white; border: 1.5px solid #eee; border-radius: 30px; cursor: pointer; font-weight: 700; color: #777; transition: 0.3s; font-size: 14px; }
+        .tab.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 12px rgba(46, 91, 60, 0.2); }
+
+        /* Meal Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; }
+        .item-card { background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03); border: 1px solid #eee; transition: 0.4s; position: relative; }
+        .item-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
+        
+        /* Zoom Image Container */
+        .meal-img-wrapper { height: 200px; overflow: hidden; position: relative; }
+        .meal-img { 
+            width: 100%; height: 100%; 
+            background-size: cover; background-position: center; 
+            transition: transform 0.6s ease; 
+        }
+        .item-card:hover .meal-img { transform: scale(1.1); }
+
+        .badge { position: absolute; top: 15px; right: 15px; background: var(--accent); padding: 6px 14px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--primary); z-index: 2; }
+        .item-content { padding: 25px; }
+        .item-title { font-size: 20px; font-weight: 800; margin: 0 0 10px 0; }
+        .item-desc { font-size: 14px; color: #777; line-height: 1.6; margin-bottom: 20px; }
+        
+        /* Nutrition Brief */
+        .nutrition-brief { display: flex; justify-content: space-between; border-top: 1px solid #f5f5f5; padding-top: 20px; }
+        .stat-val { display: block; font-weight: 800; color: var(--primary); font-size: 16px; }
+        .stat-label { font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 1px; }
+
+        .add-to-cart { width: 100%; margin-top: 20px; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .add-to-cart:hover { background: #1e3d28; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+	<div class="logo-area">Freshbite Prep</div>
+        <a href="index.html" class="nav-btn">Dashboard</a>
+        <a href="menu.html" class="nav-btn active">Weekly Menu</a>
+        <a href="plans.html" class="nav-btn">Subscription Plan</a>
+        <a href="delivery.html" class="nav-btn">Delivery Tracker</a>
+        <a href="billings.html" class="nav-btn">Order History</a>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="contact.html" class="nav-btn">Contact Support</a>
+    </nav>
+
+    <main class="menu-container">
+        <header class="menu-header">
+            <h1>Our Seasonal Menu</h1>
+            <p>Select from our chef-curated meals for the week of April 12th.</p>
+        </header>
+
+        <div class="filter-tabs">
+            <button class="tab active" onclick="filterMenu('all', this)">All Meals</button>
+            <button class="tab" onclick="filterMenu('keto', this)">Keto</button>
+            <button class="tab" onclick="filterMenu('vegan', this)">Vegan</button>
+            <button class="tab" onclick="filterMenu('protein', this)">High Protein</button>
+        </div>
+
+        <div class="grid" id="menuGrid">
+            <!-- Meal 1 -->
+            <div class="item-card" data-category="protein keto">
+                <div class="badge">BESTSELLER</div>
+                <div class="meal-img-wrapper">
+                    <div class="meal-img" style="background-image: url('images/garlicsal.jpeg');"></div>
+                </div>
+                <div class="item-content">
+                    <h3 class="item-title">Honey Garlic Salmon</h3>
+                    <p class="item-desc">Wild-caught salmon glazed in organic honey with grilled asparagus.</p>
+                    <div class="nutrition-brief">
+                        <div class="stat"><span class="stat-val">420</span><span class="stat-label">Cals</span></div>
+                        <div class="stat"><span class="stat-val">38g</span><span class="stat-label">Prot</span></div>
+                        <div class="stat"><span class="stat-val">12g</span><span class="stat-label">Carbs</span></div>
+                    </div>
+                    <button class="add-to-cart">Add to Weekly Box</button>
+                </div>
+            </div>
+
+            <!-- Meal 2 -->
+            <div class="item-card" data-category="vegan">
+                <div class="meal-img-wrapper">
+                    <div class="meal-img" style="background-image: url('images/powerbowl.jpeg');"></div>
+                </div>
+                <div class="item-content">
+                    <h3 class="item-title">Power Buddha Bowl</h3>
+                    <p class="item-desc">Ancient grains topped with hummus, avocado, and spicy chickpeas.</p>
+                    <div class="nutrition-brief">
+                        <div class="stat"><span class="stat-val">350</span><span class="stat-label">Cals</span></div>
+                        <div class="stat"><span class="stat-val">12g</span><span class="stat-label">Prot</span></div>
+                        <div class="stat"><span class="stat-val">52g</span><span class="stat-label">Carbs</span></div>
+                    </div>
+                    <button class="add-to-cart">Add to Weekly Box</button>
+                </div>
+            </div>
+
+            <!-- Meal 3 -->
+            <div class="item-card" data-category="protein keto">
+                <div class="meal-img-wrapper">
+                    <div class="meal-img" style="background-image: url('images/steakchim.jpeg');"></div>
+                </div>
+                <div class="item-content">
+                    <h3 class="item-title">Chimichurri Steak</h3>
+                    <p class="item-desc">Grass-fed flank steak with zesty herb sauce and roasted peppers.</p>
+                    <div class="nutrition-brief">
+                        <div class="stat"><span class="stat-val">580</span><span class="stat-label">Cals</span></div>
+                        <div class="stat"><span class="stat-val">45g</span><span class="stat-label">Prot</span></div>
+                        <div class="stat"><span class="stat-val">8g</span><span class="stat-label">Carbs</span></div>
+                    </div>
+                    <button class="add-to-cart">Add to Weekly Box</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function filterMenu(category, btn) {
+            // 1. Update active tab styling
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 2. Filter the items
+            const cards = document.querySelectorAll('.item-card');
+            
+            cards.forEach(card => {
+                const categories = card.getAttribute('data-category');
+                
+                if (category === 'all' || categories.includes(category)) {
+                    card.style.display = "block";
+                    // Add a small fade-in animation
+                    card.style.opacity = "0";
+                    setTimeout(() => {
+                        card.style.opacity = "1";
+                        card.style.transition = "0.4s";
+                    }, 10);
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IronCore Fitness | My Workout Plan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cloudflare.com">
+
+    <style>
+        :root {
+            --primary: #f5c518;
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+            --text-muted: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+
+        body {
+            margin: 0;
+            display: flex;
+            background: var(--bg-dark);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR (Identical to Index) */
+        .sidebar {
+            width: 240px;
+            background: #000;
+            height: 100vh;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            border-right: 1px solid #222;
+        }
+
+        .sidebar h2 { color: var(--primary); text-align: center; letter-spacing: 2px; margin-bottom: 30px; }
+
+        .sidebar a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar a:hover, .sidebar a.active { background: var(--glass); color: var(--primary); padding-left: 20px; }
+
+        /* MAIN CONTENT */
+        .main {
+            flex: 1;
+            margin-left: 240px;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        /* PLAN HEADER AREA */
+        .plan-header {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* CARDS & GRID */
+        .grid-1 { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        
+        .day-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            border-left: 4px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        /* EXERCISE ROW */
+        .exercise-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 0.5fr;
+            padding: 15px 10px;
+            border-bottom: 1px solid #222;
+            align-items: center;
+            color: #ccc;
+        }
+
+        .exercise-row:last-child { border-bottom: none; }
+        .exercise-row:hover { background: rgba(255,255,255,0.02); }
+
+        .exercise-name { color: white; font-weight: bold; }
+        .badge { background: #333; color: var(--primary); padding: 4px 10px; border-radius: 4px; font-size: 11px; text-transform: uppercase; }
+
+        h2 { font-size: 22px; margin-bottom: 20px; border-left: 4px solid var(--primary); padding-left: 15px; }
+
+        button {
+            padding: 10px 20px;
+            background: var(--primary);
+            border: none;
+            color: black;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { transform: scale(1.05); }
+
+        input[type="checkbox"] { accent-color: var(--primary); cursor: pointer; width: 18px; height: 18px; }
+
+    </style>
+</head>
+
+<body>
+
+<div class="sidebar">
+    <h2>IRONCORE</h2>
+     <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="classes.html"><i class="fas fa-dumbbell"></i> Classes</a>
+    <a href="trainers.html"><i class="fas fa-user-tie"></i> Trainers</a>
+    <a href="membership.html"><i class="fas fa-credit-card"></i> Membership</a>
+    <a href="gallery.html"><i class="fas fa-camera"></i> Gallery</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+	 <a href="account.html"><i class="fas fa-phone"></i> Account</a>
+    <a onclick="logout.html" style="margin-top: auto; border-top: 1px solid #222;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</div>
+
+<div class="main">
+
+    <div class="plan-header">
+        <div>
+            <h1 style="color: var(--primary); margin: 0;">Elite Strength Plan</h1>
+            <p style="color: var(--text-muted); margin: 5px 0 0;">Phase 2: Power & Hypertrophy</p>
+        </div>
+        <button onclick="window.print()"><i class="fas fa-print"></i> Download PDF</button>
+    </div>
+
+    <h2>Weekly Schedule</h2>
+
+    <div class="grid-1">
+        <!-- DAY 1 -->
+        <div class="day-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <h3 style="margin:0;">Day 1: Chest & Triceps</h3>
+                <span class="badge">Push Focus</span>
+            </div>
+            
+            <div class="exercise-row" style="color: var(--text-muted); font-size: 12px; font-weight: bold;">
+                <span>EXERCISE</span><span>SETS</span><span>REPS</span><span>DONE</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Barbell Bench Press</span>
+                <span>4 Sets</span>
+                <span>8-10</span>
+                <span><input type="checkbox"></span>
+            </div>
+            <div class="exercise-row">
+                <span class="exercise-name">Incline DB Press</span>
+                <span>3 Sets</span>
+                <span>12</span>
+                <span><input type="checkbox"></span>
+            </div>
+            <div class="exercise-row">
+                <span class="exercise-name">Tricep Rope Pushdowns</span>
+                <span>4 Sets</span>
+                <span>15</span>
+                <span><input type="checkbox"></span>
+            </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-card">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                <h3 style="margin:0;">Day 2: Back & Biceps</h3>
+                <span class="badge">Pull Focus</span>
+            </div>
+
+            <div class="exercise-row">
+                <span class="exercise-name">Deadlifts (Conventional)</span>
+                <span>3 Sets</span>
+                <span>5</span>
+                <span><input type="checkbox"></span>
+            </div>
+            <div class="exercise-row">
+                <span class="exercise-name">Weighted Pull-Ups</span>
+                <span>3 Sets</span>
+                <span>Failure</span>
+                <span><input type="checkbox"></span>
+            </div>
+            <div class="exercise-row">
+                <span class="exercise-name">Hammer Curls</span>
+                <span>3 Sets</span>
+                <span>12</span>
+                <span><input type="checkbox"></span>
+            </div>
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="day-card" style="border-left-color: #555; opacity: 0.8;">
+            <h3 style="margin:0;">Day 3: Active Recovery</h3>
+            <p style="color: var(--text-muted);">Rest day or 30 min light walking/yoga.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    /* PROTECTION */
+    if(localStorage.getItem("fitnessLoggedIn") !== "true"){
+        window.location.href="login.html";
+    }
+
+    /* LOGOUT */
+    function logout(){
+        localStorage.removeItem("fitnessLoggedIn");
+        window.location.href="login.html";
+    }
+</script>
+
+</body>
+</html>

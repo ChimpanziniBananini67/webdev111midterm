@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Tracking | Freshbite Prep</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root { --primary: #2E5B3C; --accent: #FFD150; --bg: #F5F5F0; --white: #ffffff; --border: #e2e8f0; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); display: flex; color: #333; }
+
+        /* Fixed Navigation Sidebar */
+        .sidebar { width: 260px; height: 100vh; background: white; border-right: 1px solid #eee; display: flex; flex-direction: column; padding: 30px 20px; position: fixed; box-sizing: border-box; }
+        .logo-area { font-weight: 800; font-size: 20px; color: var(--primary); margin-bottom: 30px; padding-left: 15px; }
+        .nav-btn { padding: 12px 15px; margin: 4px 0; border-radius: 10px; text-decoration: none; color: #666; font-weight: 500; transition: 0.2s; border: none; background: none; text-align: left; font-size: 15px; cursor: pointer; }
+        .nav-btn:hover { background: #f0f4f1; color: var(--primary); }
+        .nav-btn.active { background: var(--primary); color: white; }
+        .logout-btn { margin-top: auto; color: #cc0000; border-top: 1px solid #eee; padding-top: 20px; }
+
+        /* Main Content */
+        .delivery-container { margin-left: 260px; padding: 50px; width: calc(100% - 260px); box-sizing: border-box; }
+        .delivery-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 35px; margin-top: 30px; }
+
+        /* Map Section */
+        .map-card { background: #d0dcd0; height: 450px; border-radius: 24px; position: relative; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .map-img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.6); }
+        .driver-marker { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; }
+        .pulse { background: var(--primary); width: 20px; height: 20px; border-radius: 50%; border: 4px solid white; box-shadow: 0 0 0 rgba(46, 91, 60, 0.4); animation: pulse 2s infinite; }
+        
+        /* Map Overlays */
+        .map-overlay { position: absolute; bottom: 25px; left: 25px; background: white; padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px; }
+        .courier-img { width: 45px; height: 45px; border-radius: 50%; background: #eee; }
+        
+        /* Dashboard Cards */
+        .card { background: white; border-radius: 20px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid var(--border); }
+        .card-title { font-size: 18px; font-weight: 800; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        
+        /* Real-time Progress Bar */
+        .progress-container { margin: 25px 0; background: #f0f0f0; height: 10px; border-radius: 5px; position: relative; }
+        .progress-bar { width: 75%; height: 100%; background: var(--primary); border-radius: 5px; transition: 1s ease; }
+
+        /* Timeline */
+        .status-timeline { margin-top: 25px; }
+        .status-step { position: relative; padding: 0 0 35px 35px; border-left: 2px dashed #eee; }
+        .status-step:last-child { border-left: none; }
+        .status-step::before { content: ""; position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: #eee; border: 4px solid white; }
+        .status-step.completed::before { background: var(--primary); }
+        .status-step.completed { border-left: 2px solid var(--primary); }
+        .step-title { font-size: 14px; font-weight: 700; }
+        .step-time { font-size: 12px; color: #888; margin-top: 3px; }
+
+        /* Summary Details */
+        .meal-list-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f9f9f9; font-size: 14px; }
+
+        .btn-action { width: 100%; padding: 14px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.2s; font-size: 14px; margin-top: 10px; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: #f0f4f1; color: var(--primary); margin-top: 20px; }
+        
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(46, 91, 60, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(46, 91, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(46, 91, 60, 0); } }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo-area">Freshbite Prep</div>
+        <a href="index.html" class="nav-btn">Dashboard</a>
+       <a href="menu.html" class="nav-btn">Weekly Menu</a>
+        <a href="plan.html" class="nav-btn">Subscription Plan</a>
+        <a href="delivery.html" class="nav-btn active">Delivery Tracker</a>
+        <a href="billings.html" class="nav-btn">Order History</a>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="contact.html" class="nav-btn">Contact Support</a>
+        <button class="nav-btn logout-btn" onclick="logout()">Log Out</button>
+    </nav>
+
+    <main class="delivery-container">
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <h1 style="font-size: 32px; margin: 0;">Track Order #FB-8821</h1>
+                    <p style="color: #666; margin: 8px 0 0 0;">Arriving Today • <span id="eta">12:30 PM - 1:00 PM</span></p>
+                </div>
+                <div style="background: var(--accent); padding: 10px 20px; border-radius: 12px; font-weight: 800; color: var(--primary);">ON THE WAY</div>
+            </div>
+        </header>
+
+        <div class="delivery-grid">
+            <!-- LEFT COLUMN -->
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div class="map-card">
+                    <img src="images/trackmap.jpeg" class="map-img" alt="Tracking Map">
+                    <div class="driver-marker">
+                        <div class="pulse"></div>
+                        <div style="background: var(--primary); color: white; padding: 4px 10px; border-radius: 5px; font-size: 10px; margin-top: 10px; font-weight: 700;">DRIVER</div>
+                    </div>
+                    <div class="map-overlay">
+                        <img src="images/jenkins.jpeg" class="courier-img" alt="Driver">
+                        <div>
+                            <div style="font-size: 11px; color: #888;">YOUR COURIER</div>
+                            <div style="font-weight: 800;">Marcus Jenkins</div>
+                            <div style="font-size: 12px; color: var(--primary);">⭐️ 4.9 Rating</div>
+                        </div>
+                        <button onclick="alert('Connecting to Marcus...')" style="margin-left: 10px; border: none; background: #eef5ef; color: var(--primary); padding: 10px; border-radius: 10px; cursor: pointer; font-weight: 800;">Call</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Live Tracking Status <span style="font-size: 12px; color: var(--primary);" id="countdown">Calculating...</span></div>
+                    <div class="progress-container">
+                        <div class="progress-bar" id="pBar"></div>
+                    </div>
+                    <div class="status-timeline">
+                        <div class="status-step completed">
+                            <div class="step-title">Out for Delivery</div>
+                            <div class="step-time">Today, 11:20 AM</div>
+                        </div>
+                        <div class="status-step completed">
+                            <div class="step-title">Quality Inspection Passed</div>
+                            <div class="step-time">Today, 9:15 AM</div>
+                        </div>
+                        <div class="status-step completed">
+                            <div class="step-title">Box Packed with Ice</div>
+                            <div class="step-time">Today, 8:40 AM</div>
+                        </div>
+                        <div class="status-step">
+                            <div class="step-title">Delivered</div>
+                            <div class="step-time">Expected by 12:45 PM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div style="display: flex; flex-direction: column; gap: 30px;">
+                <div class="card">
+                    <div class="card-title">Delivery Details</div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-size: 11px; color: #aaa; margin-bottom: 5px; font-weight: 700;">DROPOFF ADDRESS</label>
+                        <div style="font-size: 14px; line-height: 1.5;">123 Fresh Lane, Garden City<br>Apartment 4B, New York, NY</div>
+                    </div>
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-size: 11px; color: #aaa; margin-bottom: 5px; font-weight: 700;">INSTRUCTIONS</label>
+                        <div style="font-size: 14px; color: #666; font-style: italic;">"Leave with front desk concierge and ring the doorbell."</div>
+                    </div>
+                    <button class="btn-action btn-secondary" onclick="alert('Redirecting to address settings...')">Edit Instructions</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">This Week's Box</div>
+                    <div class="meal-list-item"><span>Salmon & Greens</span> <span>x2</span></div>
+                    <div class="meal-list-item"><span>Lemon Herb Chicken</span> <span>x3</span></div>
+                    <div class="meal-list-item"><span>Chickpea Buddha Bowl</span> <span>x2</span></div>
+                    <div class="meal-list-item" style="border: none; margin-top: 10px; font-weight: 800; color: var(--primary);"><span>Total Items</span> <span>7 Meals</span></div>
+                    <button class="btn-action btn-primary" style="margin-top: 20px;" onclick="window.location.href='menu.html'">View Recipes</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Fake real-time updates
+        let mins = 14;
+        function updateTimer() {
+            if(mins > 0) {
+                mins--;
+                document.getElementById('countdown').innerText = `${mins} mins away`;
+                document.getElementById('pBar').style.width = (75 + (14-mins)) + '%';
+            }
+        }
+        setInterval(updateTimer, 60000); // Update every minute
+        document.getElementById('countdown').innerText = `${mins} mins away`;
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

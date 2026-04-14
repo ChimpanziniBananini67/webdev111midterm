@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing & Subscription | Freshbite Prep</title>
+    <!-- Consistent Typography -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root { --primary: #2E5B3C; --accent: #FFD150; --bg: #F5F5F0; --white: #ffffff; --text-muted: #888; --border: #e2e8f0; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); display: flex; color: #333; }
+
+        /* Navigation Sidebar (Dashboard Consistent) */
+        .sidebar { width: 260px; height: 100vh; background: white; border-right: 1px solid #eee; display: flex; flex-direction: column; padding: 30px 20px; position: fixed; box-sizing: border-box; }
+        .logo-area { font-weight: 800; font-size: 20px; color: var(--primary); margin-bottom: 30px; padding-left: 15px; }
+        .nav-btn { padding: 12px 15px; margin: 4px 0; border-radius: 10px; text-decoration: none; color: #666; font-weight: 500; transition: 0.2s; border: none; background: none; text-align: left; font-size: 15px; cursor: pointer; }
+        .nav-btn:hover { background: #f0f4f1; color: var(--primary); }
+        .nav-btn.active { background: var(--primary); color: white; }
+        .logout-btn { margin-top: auto; color: #cc0000; border-top: 1px solid #eee; padding-top: 20px; }
+
+        /* Main Content */
+        .billing-container { margin-left: 260px; padding: 50px; width: calc(100% - 260px); box-sizing: border-box; }
+        .billing-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 35px; margin-top: 30px; }
+        
+        .card { background: white; border-radius: 24px; padding: 35px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid var(--border); }
+        .card-title { font-size: 18px; font-weight: 800; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+
+        /* Spend Chart Simulation */
+        .spend-chart { display: flex; align-items: flex-end; gap: 10px; height: 100px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .bar { flex: 1; background: #eef5ef; border-radius: 4px 4px 0 0; transition: 0.3s; position: relative; }
+        .bar:hover { background: var(--primary); }
+        .bar::after { content: attr(data-label); position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #aaa; }
+
+        /* Status Badge */
+        .status-badge { padding: 6px 14px; border-radius: 50px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .status-active { background: #eef5ef; color: var(--primary); }
+        
+        /* Transaction Table */
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; font-size: 11px; color: var(--text-muted); text-transform: uppercase; padding: 15px 10px; letter-spacing: 1px; }
+        td { padding: 18px 10px; font-size: 14px; border-bottom: 1px solid #f8f8f8; }
+        .receipt-btn { color: var(--primary); text-decoration: none; font-weight: 700; background: #f0f4f1; padding: 5px 12px; border-radius: 6px; font-size: 12px; }
+
+        .btn-action { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #eee; background: white; cursor: pointer; font-size: 14px; font-weight: 700; transition: 0.2s; }
+        .btn-action:hover { border-color: var(--primary); background: #f0f4f1; }
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo-area">Freshbite Prep</div>
+        <a href="index.html" class="nav-btn">Dashboard</a>
+     <a href="menu.html" class="nav-btn">Weekly Menu</a>
+        <a href="plan.html" class="nav-btn">Subscription Plan</a>
+        <a href="delivery.html" class="nav-btn">Delivery Tracker</a>
+        <a href="billings.html" class="nav-btn active">Billings</a>
+        <a href="about.html" class="nav-btn">About Us</a>
+        <a href="contact.html" class="nav-btn">Contact Support</a>
+        <button class="nav-btn logout-btn" onclick="logout()">Log Out</button>
+    </nav>
+
+    <main class="billing-container">
+        <header>
+            <h1 style="font-size: 32px; margin: 0;">Financial Overview</h1>
+            <p style="color: #666; margin-top: 5px;">Track your meal investments and manage payment security.</p>
+        </header>
+
+        <div class="billing-grid">
+            <div style="display: flex; flex-direction: column; gap: 35px;">
+                <!-- Spend Insights -->
+                <div class="card">
+                    <div class="card-title">Monthly Spend Insight</div>
+                    <div class="spend-chart">
+                        <div class="bar" style="height: 60%;" data-label="Jan"></div>
+                        <div class="bar" style="height: 40%;" data-label="Feb"></div>
+                        <div class="bar" style="height: 85%;" data-label="Mar"></div>
+                        <div class="bar" style="height: 70%;" data-label="Apr"></div>
+                    </div>
+                    <p style="font-size: 13px; color: #777;">You've saved an average of <b>12 hours</b> of meal prep time this month.</p>
+                </div>
+
+                <!-- Transaction History -->
+                <div class="card">
+                    <div class="card-title">Billing History</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Invoice</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: 600;">Apr 12, 2026</td>
+                                <td style="color: #888;">#INV-99021</td>
+                                <td style="font-weight: 700;">$84.99</td>
+                                <td><span class="status-badge status-active">Successful</span></td>
+                                <td><a href="#" class="receipt-btn">Download</a></td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: 600;">Apr 05, 2026</td>
+                                <td style="color: #888;">#INV-98842</td>
+                                <td style="font-weight: 700;">$84.99</td>
+                                <td><span class="status-badge status-active">Successful</span></td>
+                                <td><a href="#" class="receipt-btn">Download</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Side Cards -->
+            <div style="display: flex; flex-direction: column; gap: 35px;">
+                <div class="card" style="background: var(--primary); color: white;">
+                    <div class="card-title" style="color: white; margin-bottom: 5px;">Wallet Balance</div>
+                    <div style="font-size: 32px; font-weight: 800; margin-bottom: 10px;">$15.00</div>
+                    <p style="font-size: 12px; opacity: 0.8; line-height: 1.5;">Referral credit applied from your last invite. Use this for your next box!</p>
+                    <button class="btn-action" style="margin-top: 15px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;">Redeem Credit</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Default Payment</div>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+                        <div style="background: #1a1a1a; color: white; padding: 8px 12px; border-radius: 6px; font-weight: 800; font-size: 10px;">VISA</div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 14px;">Personal •••• 4242</div>
+                            <div style="font-size: 11px; color: #aaa;">Expiry 08/2028</div>
+                        </div>
+                    </div>
+                    <button class="btn-action" onclick="alert('Card Update Protocol Started')">Update Method</button>
+                    <p style="font-size: 11px; color: #bbb; text-align: center; margin-top: 15px;">Securely encrypted by Stripe</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

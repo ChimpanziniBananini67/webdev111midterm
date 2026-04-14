@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Freshbite Prep</title>
+    <style>
+        /* Same root and body styles as login for consistency */
+        :root { --primary-green: #2E5B3C; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: url('https://unsplash.com') center center fixed; background-size: cover; height: 100vh; display: flex; justify-content: flex-end; }
+        .register-drawer { width: 420px; height: 100%; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(15px); padding: 50px 40px; display: flex; flex-direction: column; justify-content: center; animation: slideIn 0.5s ease-out; }
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        .brand-logo { color: var(--primary-green); font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-size: 12px; font-weight: 600; margin-bottom: 5px; color: #666; }
+        input, select { width: 100%; padding: 12px; border: 1.5px solid #e0e0e0; border-radius: 8px; }
+        .reg-btn { width: 100%; padding: 15px; background: var(--primary-green); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="register-drawer">
+        <div class="brand-logo">🥗 FRESHBITE PREP</div>
+        <h2>Join the community.</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="regName" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="regEmail" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Diet Goal</label>
+                <select id="regDiet" required>
+                    <option value="keto">Keto</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="balanced">Balanced</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="regPass" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="reg-btn">Create Account</button>
+        </form>
+        <p style="text-align: center; font-size: 14px;">Already have an account? <a href="login.html" style="color: var(--primary-green); font-weight: 700;">Login</a></p>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newUser = {
+                name: document.getElementById('regName').value,
+                email: document.getElementById('regEmail').value.trim(),
+                diet: document.getElementById('regDiet').value,
+                password: document.getElementById('regPass').value
+            };
+
+            const users = JSON.parse(localStorage.getItem('freshbite_users') || '[]');
+            
+            if (users.find(u => u.email === newUser.email)) {
+                alert("Email already exists!");
+                return;
+            }
+
+            users.push(newUser);
+            localStorage.setItem('freshbite_users', JSON.stringify(users));
+            alert("Account created! Redirecting to login...");
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

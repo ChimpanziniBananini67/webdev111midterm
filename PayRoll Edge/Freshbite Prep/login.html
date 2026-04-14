@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Freshbite Prep</title>
+    <style>
+        :root { --primary-green: #2E5B3C; --dark-text: #333; }
+        body { margin: 0; font-family: 'Inter', sans-serif; background: url('https://unsplash.com') center center fixed; background-size: cover; height: 100vh; display: flex; justify-content: flex-end; }
+        .login-drawer { width: 420px; height: 100%; background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(12px); box-shadow: -10px 0 30px rgba(0,0,0,0.15); padding: 50px 40px; display: flex; flex-direction: column; justify-content: center; position: relative; animation: slideIn 0.5s ease-out; }
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+        .brand-logo { color: var(--primary-green); font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+        h2 { margin-bottom: 35px; }
+        .form-group { margin-bottom: 22px; }
+        label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #666; }
+        input { width: 100%; padding: 14px; border: 1.5px solid #e0e0e0; border-radius: 10px; box-sizing: border-box; font-size: 15px; }
+        .login-btn { width: 100%; padding: 16px; background-color: var(--primary-green); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 700; }
+        .footer-links { margin-top: 30px; text-align: center; font-size: 14px; }
+        .footer-links a { color: var(--primary-green); text-decoration: none; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="login-drawer">
+        <div class="brand-logo">🥗 FRESHBITE PREP</div>
+        <h2>Fuel your goals.</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPass" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+        <div class="footer-links">
+            <p>New to Freshbite? <a href="register.html">Create an account</a></p>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // 1. Grab the values (using generic selectors to match your HTML)
+    const emailInput = document.querySelector('input').value.trim();
+    const passInput = document.querySelector('input[type="password"]').value;
+
+    // 2. Get the user list
+    const users = JSON.parse(localStorage.getItem('freshbite_users') || '[]');
+    
+    // 3. Debugging (Check your Console F12 to see if users exist)
+    console.log("Registered Users:", users);
+    console.log("Trying to login with:", emailInput);
+
+    // 4. Find user (Checking if the input matches the saved email)
+    const user = users.find(u => u.email === emailInput && u.password === passInput);
+
+    if (user) {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = 'index.html'; 
+    } else {
+        alert("Login Failed! Make sure you used the exact EMAIL you registered with.");
+    }
+});
+
+    </script>
+</body>
+</html>
