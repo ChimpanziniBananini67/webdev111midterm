@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - LibryConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="auth-page">
+        <div class="auth-container">
+            <div class="vintage-card">
+                <h2><i class="fas fa-id-card-alt"></i> Create Library Card</h2>
+                <p class="subtitle">Sign up to unlock full access</p>
+
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="full-name">
+                            <i class="fas fa-user-circle"></i> Full Name
+                        </label>
+                        <input type="text" id="full-name" class="form-control" placeholder="Your Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" id="email" class="form-control" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="username-reg">
+                            <i class="fas fa-id-badge"></i> Desired Library ID
+                        </label>
+                        <input type="text" id="username-reg" class="form-control" placeholder="e.g., johndoe123" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password-reg">
+                            <i class="fas fa-lock"></i> Create Password
+                        </label>
+                        <input type="password" id="password-reg" class="form-control" placeholder="Min. 8 characters" required minlength="8">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">
+                            <i class="fas fa-lock"></i> Confirm Password
+                        </label>
+                        <input type="password" id="confirm-password" class="form-control" placeholder="Repeat password" required minlength="8">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dob">
+                            <i class="fas fa-calendar-alt"></i> Date of Birth
+                        </label>
+                        <input type="date" id="dob" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-library-card btn-block">
+                        <i class="fas fa-user-plus"></i> Register Account
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    Already have a card? <a href="login.html">Login Here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

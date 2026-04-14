@@ -1,0 +1,2341 @@
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap');
+
+/* --- Root Variables for Easy Theming --- */
+:root {
+    --primary-blue: #003366;      /* Deep Navy */
+    --secondary-blue: #4682B4;   /* Steel Blue */
+    --accent-teal: #40E0D0;      /* Turquoise */
+    --accent-red: #DC3545;       /* Alert/Overdue Red */
+    --bg-cream: #FFF8DC;         /* Paper/Cream */
+    --bg-light: #f8f9fa;
+    --text-dark: #2c2c2c;
+    --text-muted: #666;
+    --vintage-brown: #5C4033;   /* Dark Brown */
+    --card-bg: #EAE2C6;         /* Library Card Beige */
+    --card-border: #8B7355;     /* Card Border Brown */
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Global Resets & Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, .logo {
+    font-family: 'Lora', serif;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Header & Navigation --- */
+.site-header {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 2rem;
+}
+
+.main-nav a {
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--accent-teal);
+}
+
+/* Overdue Badge */
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.badge-overdue {
+    background-color: var(--accent-red);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+/* VINTAGE-MODERN LIBRARY CARD BUTTON */
+.btn-library-card {
+    background-color: var(--card-bg);
+    color: var(--vintage-brown);
+    border: 2px solid var(--card-border);
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-library-card:hover {
+    background-color: var(--vintage-brown);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+.btn-secondary:hover {
+    background: white;
+    color: var(--primary-blue);
+}
+
+.btn-primary {
+    background-color: var(--accent-teal);
+    color: var(--primary-blue);
+}
+.btn-primary:hover {
+    background-color: #28c7b9;
+}
+
+/* --- HOMEPAGE: Search Centric Layout --- */
+.hero-search-section {
+    padding: 6rem 0;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(255,248,220,0.5), rgba(255,248,220,1)), url('library-pattern.png');
+    background-size: cover;
+}
+
+.hero-search-section h1 {
+    margin-bottom: 1rem;
+}
+
+.hero-search-section p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+.search-bar-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 50px;
+    box-shadow: var(--shadow-card);
+    padding: 8px;
+    display: flex;
+    border: 1px solid #ddd;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 15px 25px;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    background: transparent;
+}
+.search-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.search-button {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+}
+.search-button:hover {
+    background-color: var(--secondary-blue);
+}
+
+/* --- Featured Section --- */
+.section {
+    padding: 4rem 0;
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+.card-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+.card-item:hover {
+    transform: translateY(-5px);
+}
+.card-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+.card-item h3 {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+/* --- LOGIN / REGISTER PAGE: Vintage Modern --- */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+}
+
+.vintage-card {
+    background-color: var(--card-bg);
+    border: 3px solid var(--card-border);
+    padding: 3rem 2.5rem;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.vintage-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed var(--card-border);
+    pointer-events: none;
+}
+
+.vintage-card h2 {
+    text-align: center;
+    color: var(--vintage-brown);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Lora', serif;
+    color: var(--vintage-brown);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--card-border);
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.2);
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+.text-center a {
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+/* --- SEARCH RESULTS & BOOK DETAILS PAGE --- */
+.results-header {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.book-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.book-cover {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.book-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+}
+
+.book-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.book-author {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+.status.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+.status.checked-out {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* --- MEMBER DASHBOARD / LOANS PAGE --- */
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+}
+
+.sidebar-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow-light);
+    height: fit-content;
+}
+
+.loans-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: var(--shadow-light);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.loans-table th,
+.loans-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.loans-table th {
+    background-color: var(--primary-blue);
+    color: white;
+    font-family: 'Lora', serif;
+}
+
+.due-date.overdue {
+    color: var(--accent-red);
+    font-weight: bold;
+    animation: pulse 1.5s infinite;
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color: var(--primary-blue);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 4rem;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .main-nav ul {
+        gap: 1rem;
+    }
+    h1 { font-size: 2.2rem; }
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   LOGIN PAGE STYLES - VINTAGE MODERN THEME
+   ========================================== */
+
+/* Page Background */
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-cream);
+    /* Optional subtle background pattern */
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d9c9b8' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+/* The Main Card Container */
+.vintage-card {
+    background-color: var(--card-bg);
+    border: 3px solid var(--card-border);
+    padding: 3rem 2.5rem;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1), 
+                15px 15px 20px rgba(0,0,0,0.15);
+    position: relative;
+    border-radius: 4px;
+}
+
+/* Dashed border effect inside the card */
+.vintage-card::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px dashed var(--card-border);
+    pointer-events: none;
+    border-radius: 2px;
+}
+
+/* Heading Style */
+.vintage-card h2 {
+    text-align: center;
+    color: var(--vintage-brown);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+    font-family: 'Lora', serif;
+}
+
+.vintage-card .subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Lora', serif;
+    color: var(--vintage-brown);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.form-group label i {
+    margin-right: 8px;
+    opacity: 0.8;
+}
+
+/* Input Fields */
+.form-control {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--card-border);
+    background-color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(0, 51, 102, 0.2);
+}
+
+/* Options Row (Remember me + Forgot) */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+}
+
+.remember-me {
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: var(--vintage-brown);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Button Style */
+.btn-library-card {
+    background-color: var(--card-bg);
+    color: var(--vintage-brown);
+    border: 2px solid var(--card-border);
+    font-family: 'Lora', serif;
+    font-size: 1.2rem;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-library-card:hover {
+    background-color: var(--vintage-brown);
+    color: var(--card-bg);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+}
+
+.btn-library-card:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.15);
+}
+
+/* Bottom Link */
+.text-center {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+}
+
+.text-center a {
+    color: var(--primary-blue);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.text-center a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .vintage-card {
+        padding: 2rem 1.5rem;
+    }
+    .vintage-card h2 {
+        font-size: 2rem;
+    }
+}
+
+/* ==========================================
+   REGISTER PAGE STYLES - VINTAGE MODERN THEME
+   ========================================== */
+
+/* Reusing the .auth-page, .auth-container, and .vintage-card styles from login.html */
+/* The general .form-group, .form-control, .btn-library-card styles also apply */
+
+/* Specific adjustments for the Register Page */
+
+/* Title Icon */
+.vintage-card h2 i {
+    margin-right: 10px;
+    color: var(--vintage-brown);
+}
+
+/* Subtitle */
+.vintage-card .subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+
+/* Form Group Labels with Icons */
+.form-group label i {
+    margin-right: 8px;
+    opacity: 0.8;
+    color: var(--vintage-brown); /* Match label color */
+}
+
+/* Adjustments for Date Input (sometimes needs slight tweaks) */
+.form-group input[type="date"] {
+    /* Inherits styles from .form-control */
+    appearance: none; /* Remove default styling */
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%238B4513" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11.00-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm-7-7h7v7h-7v-7z" fill="%238B4513"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px 20px;
+}
+
+/* Ensure the button uses the library card style */
+.btn-library-card.btn-block {
+    width: 100%; /* Make it full width */
+}
+
+/* Link at the bottom */
+.text-center a {
+    color: var(--primary-blue); /* Link color for "Login Here" */
+}
+
+/* ==========================================
+   HOMEPAGE STYLES - SEARCH CENTRIC LAYOUT
+   ========================================== */
+
+/* --- HERO SECTION --- */
+.hero-search-section {
+    padding: 5rem 0; /* Generous padding */
+    text-align: center;
+    background-color: var(--vintage-cream);
+    /* Optional: Add a subtle background texture or image */
+    /* background-image: url('path/to/your/vintage-texture.png'); */
+    background-size: cover;
+    position: relative;
+    overflow: hidden; /* Prevent content spill */
+}
+
+.hero-search-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-navy);
+}
+
+.hero-search-section p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.search-bar-wrapper {
+    max-width: 650px;
+    margin: 0 auto;
+    background: white;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-card);
+    padding: 8px;
+    display: flex;
+    border: 2px solid var(--vintage-border); /* Vintage border */
+    transition: box-shadow 0.3s ease;
+}
+
+.search-bar-wrapper:focus-within { /* Highlight when input is focused */
+    box-shadow: 0 0 0 4px rgba(70, 130, 180, 0.3); /* Steel blue glow */
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.search-form input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 25px;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    background: transparent;
+    color: var(--text-dark);
+}
+
+.search-form input[type="text"]::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.search-button {
+    background-color: var(--accent-teal);
+    color: var(--primary-navy);
+    border: none;
+    padding: 12px 25px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #30C0B0; /* Darker teal */
+}
+
+/* --- FEATURED COLLECTIONS SECTION --- */
+.featured-collections {
+    padding: 4rem 0;
+    background-color: var(--bg-light); /* Slightly different background */
+}
+
+.featured-collections h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.books-grid { /* Reusing the grid structure from search results */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.featured-item { /* Styles for featured items */
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.featured-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-deep);
+}
+
+.featured-item img {
+    width: 100%;
+    height: 200px; /* Consistent height for featured images */
+    object-fit: cover;
+    display: block;
+}
+
+.featured-item h3 {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1.2rem;
+    margin-bottom: 0; /* Remove default margin */
+    color: var(--primary-navy);
+}
+
+.featured-item p {
+    padding: 0 var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    flex-grow: 1; /* Allows text to push button down */
+}
+
+/* --- ABOUT US SNIPPET --- */
+.about-snippet {
+    padding: 4rem 0;
+    background-color: var(--vintage-cream);
+}
+.about-snippet h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.about-snippet-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+    background: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+.about-snippet-content .text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-snippet-content .image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.about-snippet-content .image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-light);
+}
+
+.about-snippet-content .btn-library-card {
+    margin-top: var(--spacing-md);
+}
+
+/* --- FOOTER --- */
+.site-footer {
+    background-color: var(--primary-navy);
+    color: white;
+    padding: var(--spacing-lg) 0;
+    margin-top: auto; /* Pushes footer to bottom */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.footer-links a {
+    margin: 0 var(--spacing-xs);
+    color: white;
+}
+
+.footer-links a:hover {
+    color: var(--accent-teal);
+}
+
+/* --- General Responsive Adjustments --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+
+    .header-container {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    .main-nav ul {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-sm);
+    }
+    .user-actions {
+        margin-top: var(--spacing-sm);
+    }
+
+    .hero-search-section {
+        padding: 4rem 0;
+    }
+    .search-bar-wrapper {
+        padding: 6px;
+    }
+    .search-form input[type="text"],
+    .search-button {
+        padding: 10px 18px;
+    }
+
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    .featured-item img {
+        height: 180px;
+    }
+
+    .about-snippet-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-snippet-content .image {
+        margin-top: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-search-section h1 {
+        font-size: 2.2rem;
+    }
+    .search-bar-wrapper {
+        padding: 4px;
+        border-radius: var(--radius-full);
+    }
+    .search-form input[type="text"],
+    .search-button {
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+    .btn-library-card {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+
+/* --- GOOGLE FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap');
+
+/* --- ROOT VARIABLES --- */
+:root {
+    --primary-blue: #003366;
+    --secondary-blue: #4682B4;
+    --accent-teal: #40E0D0;
+    --accent-red: #DC3545;
+    --bg-cream: #FFF8DC;
+    --bg-light: #f8f9fa;
+    --text-dark: #2c2c2c;
+    --text-muted: #666;
+    --vintage-brown: #5C4033;
+    --card-bg: #EAE2C6;
+    --card-border: #8B7355;
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Lora', serif;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.6rem; }
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- HEADER & NAVIGATION --- */
+.site-header {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.main-nav a {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+    color: var(--accent-teal);
+}
+
+/* OVERDUE BADGE */
+.badge-overdue {
+    background-color: var(--accent-red);
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    animation: pulse 1.5s infinite;
+    margin-left: 5px;
+}
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+.btn-secondary:hover {
+    background: white;
+    color: var(--primary-blue);
+}
+
+.btn-library-card {
+    background-color: var(--card-bg);
+    color: var(--vintage-brown);
+    border: 2px solid var(--card-border);
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-library-card:hover {
+    background-color: var(--vintage-brown);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* --- HOMEPAGE: SEARCH CENTRIC LAYOUT --- */
+.hero-search-section {
+    padding: 6rem 0;
+    text-align: center;
+    background: linear-gradient(rgba(255, 248, 220, 0.8), rgba(255, 248, 220, 0.9));
+}
+
+.hero-search-section h1 {
+    margin-bottom: 1rem;
+}
+
+.hero-search-section p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+}
+
+/* THE BIG SEARCH BAR */
+.search-bar-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 50px;
+    box-shadow: var(--shadow-card);
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 15px 25px;
+    border: none;
+    outline: none;
+    font-size: 1.1rem;
+    background: transparent;
+}
+.search-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.search-button {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+}
+.search-button:hover {
+    background-color: var(--secondary-blue);
+}
+
+/* FILTER TAGS */
+.search-filters {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.filter-tag {
+    display: inline-block;
+    background: white;
+    padding: 5px 12px;
+    margin: 5px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--primary-blue);
+    border: 1px solid #ddd;
+    transition: all 0.3s;
+}
+.filter-tag:hover {
+    background: var(--primary-blue);
+    color: white;
+}
+
+/* --- FEATURED SECTION --- */
+.section {
+    padding: 4rem 0;
+}
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.book-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+    transition: transform 0.3s ease;
+}
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+.book-cover {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background-color: #eee;
+}
+
+.book-info {
+    padding: 1.5rem;
+}
+
+.book-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.book-author {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.status.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+.status.checked-out {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* --- FOOTER --- */
+.site-footer {
+    background-color: var(--primary-blue);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .header-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .main-nav ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    h1 { font-size: 2.2rem; }
+}
+
+/* ==========================================
+   SEARCH RESULTS PAGE STYLES
+   ========================================== */
+
+/* REPEATING SEARCH BAR FOR CONTINUITY */
+.search-bar-section {
+    padding: 3rem 0;
+    background-color: var(--vintage-cream);
+}
+
+.search-bar-section .search-bar-wrapper {
+    /* Inherits styles from .search-bar-wrapper on homepage */
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: var(--shadow-card);
+    border: 1px solid #ddd;
+}
+
+.search-bar-section .search-input {
+    /* Inherits styles from .search-input */
+}
+
+.search-bar-section .search-button {
+    /* Inherits styles from .search-button */
+}
+
+.search-info {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.search-info h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-blue);
+}
+
+.search-info .search-term {
+    font-weight: bold;
+    color: var(--vintage-brown);
+}
+
+.search-info .result-count {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* SEARCH RESULTS GRID */
+.search-results-section {
+    padding: 3rem 0;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+/* BOOK CARD STYLES (Reused from Featured Section, with added actions) */
+.book-card {
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Stack image, info, and actions */
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-deep);
+}
+
+.book-cover {
+    width: 100%;
+    height: 280px; /* Consistent height for book covers */
+    object-fit: cover;
+    display: block; /* Remove extra space below image */
+    background-color: var(--bg-light); /* Placeholder color */
+}
+
+.book-info {
+    padding: var(--spacing-sm);
+    flex-grow: 1; /* Allows info to push actions to the bottom */
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    color: var(--primary-blue);
+}
+
+.book-author {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+    align-self: flex-start; /* Aligns status to the left */
+}
+
+.status.available {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status.checked-out {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status.on-hold { /* For books that are on hold */
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.book-actions {
+    margin-top: auto; /* Pushes actions to the bottom of the card */
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap; /* Allows buttons to wrap on smaller screens */
+}
+
+.book-actions .btn {
+    flex: 1; /* Distributes space among buttons */
+    min-width: 80px; /* Ensures buttons don't get too small */
+    font-size: 0.9rem;
+    padding: 8px 10px; /* Slightly smaller padding for action buttons */
+}
+
+.book-actions .btn-library-card {
+    background-color: var(--card-bg);
+    color: var(--vintage-brown);
+    border: 1px solid var(--card-border);
+    font-size: 0.9rem;
+    padding: 8px 10px;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+}
+.book-actions .btn-library-card:hover {
+    background-color: var(--vintage-brown);
+    color: white;
+}
+
+.book-actions .btn-loan {
+    background-color: var(--accent-teal);
+    color: var(--primary-blue);
+}
+.book-actions .btn-loan:hover {
+    background-color: #30C0B0;
+}
+
+.book-actions .btn-hold {
+    background-color: var(--status-hold);
+    color: white;
+}
+.book-actions .btn-hold:hover {
+    background-color: #A0522D;
+}
+
+.book-actions .btn-disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS FOR SEARCH RESULTS --- */
+@media (max-width: 600px) {
+    .search-bar-wrapper {
+        border-radius: var(--radius-lg);
+        padding: 5px;
+    }
+    .search-input, .search-button {
+        padding: 12px 18px;
+    }
+    .search-input {
+        border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    }
+    .search-button {
+        border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+    .books-grid {
+        grid-template-columns: 1fr; /* Stack cards */
+    }
+    .book-card {
+        max-width: 350px; /* Limit width when stacked */
+        margin: 0 auto;
+    }
+    .search-info h2 {
+        font-size: 1.5rem;
+    }
+    .search-info .result-count {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================
+   BOOK DETAILS PAGE STYLES
+   ========================================== */
+
+.book-details-section {
+    padding: 3rem 0;
+}
+
+.details-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 3rem;
+    background-color: white;
+    padding: 3rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+.details-cover {
+    text-align: center; /* Center the image if it's smaller than its container */
+}
+
+.details-cover img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-light);
+}
+
+.details-info h1.book-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-blue);
+}
+
+.details-info .book-author {
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.book-meta p {
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.book-meta strong {
+    color: var(--primary-navy);
+    margin-right: 8px;
+    min-width: 120px; /* For alignment */
+}
+
+.book-status-actions {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--vintage-border);
+}
+
+.book-status-actions .status {
+    font-size: 1rem;
+    padding: 6px 15px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.book-status-actions .availability-message {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 2rem;
+}
+
+.book-status-actions .availability-message strong {
+    color: var(--primary-navy);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    flex: 1;
+    min-width: 150px; /* Ensure buttons are large enough */
+    padding: 12px 20px;
+    font-size: 1.1rem;
+}
+
+.action-buttons .btn-loan {
+    background-color: var(--accent-teal);
+    color: var(--primary-navy);
+}
+.action-buttons .btn-loan:hover {
+    background-color: #30C0B0;
+}
+
+.action-buttons .btn-hold {
+    background-color: var(--card-bg);
+    color: var(--vintage-brown);
+    border: 2px solid var(--card-border);
+}
+.action-buttons .btn-hold:hover {
+    background-color: var(--vintage-brown);
+    color: white;
+}
+
+.details-divider {
+    border: none;
+    height: 1px;
+    background-color: var(--vintage-border);
+    margin: 2.5rem 0;
+}
+
+.book-description h2 {
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.book-description p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* --- RESPONSIVE FOR BOOK DETAILS --- */
+@media (max-width: 768px) {
+    .details-container {
+        grid-template-columns: 1fr; /* Stack columns */
+        padding: 2rem;
+    }
+    .details-info h1.book-title {
+        font-size: 2rem;
+    }
+    .book-status-actions .availability-message {
+        font-size: 0.95rem;
+    }
+    .action-buttons .btn {
+        flex: none; /* Disable flex grow when stacked */
+        width: 100%; /* Make buttons full width */
+        margin-bottom: 1rem;
+    }
+}
+
+/* ==========================================
+   MEMBER DASHBOARD PAGE STYLES
+   ========================================== */
+
+.member-dashboard-section {
+    padding: 3rem 0;
+}
+
+.member-dashboard-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-blue);
+}
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr; /* Sidebar and Main Content */
+    gap: 2rem;
+}
+
+/* --- SIDEBAR STYLES --- */
+.sidebar-card {
+    background-color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    height: fit-content; /* Adjust height based on content */
+}
+
+.sidebar-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+    border-bottom: 2px solid var(--vintage-border);
+    padding-bottom: 0.5rem;
+}
+
+.user-profile-summary {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.user-profile-summary .user-icon {
+    font-size: 3rem;
+    color: var(--vintage-brown);
+    margin-bottom: var(--spacing-sm);
+}
+
+.user-profile-summary p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.user-profile-summary p strong {
+    color: var(--primary-navy);
+}
+
+.sidebar-divider {
+    border: none;
+    height: 1px;
+    background-color: var(--vintage-border);
+    margin: var(--spacing-lg) 0;
+}
+
+/* OVERDUE ALERT STYLES */
+.overdue-alert {
+    background-color: var(--accent-red);
+    color: white;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+}
+
+.overdue-alert h4 {
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.overdue-alert p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.overdue-alert p strong {
+    font-size: 1.2rem;
+}
+
+.overdue-alert .btn-sm {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    background-color: white;
+    color: var(--accent-red);
+    border: 1px solid white;
+}
+.overdue-alert .btn-sm:hover {
+    background-color: var(--accent-red);
+    color: white;
+    border: 1px solid white;
+}
+
+
+/* QUICK LINKS */
+.quick-links h4 {
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+}
+
+.quick-links ul li {
+    margin-bottom: 0.8rem;
+}
+
+.quick-links ul li a {
+    color: var(--vintage-brown);
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.quick-links ul li a:hover {
+    color: var(--accent-teal);
+}
+
+.quick-links ul li i {
+    margin-right: 10px;
+    color: var(--text-muted);
+}
+
+/* --- MAIN CONTENT STYLES --- */
+.main-content .dashboard-section {
+    background-color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    margin-bottom: var(--spacing-lg);
+}
+
+.main-content .dashboard-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-blue);
+    border-bottom: 2px solid var(--vintage-border);
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* --- LOANS TABLE STYLES --- */
+.loans-table-wrapper {
+    overflow-x: auto; /* Scrollable table on small screens */
+}
+
+.loans-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: var(--radius-md); /* Rounded corners for table */
+    overflow: hidden; /* To make border-radius work */
+}
+
+.loans-table thead th {
+    background-color: var(--primary-blue);
+    color: white;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    padding: 1rem;
+    text-align: left;
+}
+
+.loans-table tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    color: var(--text-muted);
+}
+
+.loans-table tbody tr:nth-child(even) {
+    background-color: var(--bg-light); /* Zebra striping */
+}
+
+.loans-table tbody tr:last-child td {
+    border-bottom: none; /* No border on last row */
+}
+
+.loans-table td.due-date {
+    font-weight: bold;
+}
+
+.loans-table td.due-date.overdue {
+    color: var(--accent-red);
+}
+
+.loans-table .status {
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.loans-table .status.overdue {
+    background-color: var(--accent-red);
+    color: white;
+}
+.loans-table .status.borrowed {
+    background-color: var(--status-borrowed);
+    color: white;
+}
+
+.loans-table .btn-link {
+    color: var(--primary-blue);
+    text-decoration: underline;
+    font-weight: bold;
+}
+.loans-table .btn-link:hover {
+    color: var(--accent-teal);
+}
+
+/* --- HOLDS LIST STYLES --- */
+.holds-list .hold-item {
+    background-color: var(--bg-light);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--secondary-blue);
+}
+
+.holds-list .hold-item p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.holds-list .hold-item p strong {
+    color: var(--primary-navy);
+}
+
+.holds-list .hold-item .status {
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.holds-list .hold-item .status.on-hold {
+    background-color: var(--status-hold);
+    color: white;
+}
+.holds-list .hold-item .status.available-for-pickup {
+    background-color: var(--accent-teal);
+    color: var(--primary-navy);
+}
+
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 992px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr; /* Stack sidebar and main content */
+    }
+    .sidebar-card {
+        margin-bottom: var(--spacing-lg); /* Add space below sidebar when stacked */
+    }
+}
+
+/* ==========================================
+   LOANS PAGE STYLES
+   ========================================== */
+
+.loans-page-section {
+    padding: 3rem 0;
+}
+
+.loans-page-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--primary-blue);
+}
+
+/* Overdue Section Styling */
+.overdue-section {
+    background-color: var(--accent-red); /* Red background for emphasis */
+    color: white;
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.overdue-section h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.overdue-section p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Reusing table styles but targeting specific elements for overdue */
+.overdue-section .loans-table-wrapper,
+.current-loans-section .loans-table-wrapper {
+    background-color: white; /* White background for the table itself */
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    overflow: hidden; /* Ensures rounded corners */
+}
+
+.overdue-section .loans-table thead th,
+.current-loans-section .loans-table thead th {
+    background-color: var(--primary-blue); /* Keep header blue */
+    color: white;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    padding: 1rem;
+}
+
+.overdue-section .loans-table tbody td,
+.current-loans-section .loans-table tbody td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    color: var(--text-muted);
+}
+
+.overdue-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.overdue-section .loans-table td.due-date.overdue,
+.current-loans-section .loans-table td.due-date.overdue { /* Ensure overdue highlighting works */
+    color: var(--accent-red);
+    font-weight: bold;
+}
+
+.overdue-section .loans-table .status.overdue,
+.current-loans-section .loans-table .status.overdue {
+    background-color: var(--accent-red);
+    color: white;
+}
+
+/* Current Loans Section Styling */
+.current-loans-section {
+    margin-top: 2rem; /* Space between sections */
+}
+
+.current-loans-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-blue);
+    border-bottom: 2px solid var(--vintage-border);
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Link to Holds section */
+.holds-link-section {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--vintage-border);
+}
+
+.holds-link-section a {
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+.holds-link-section a:hover {
+    color: var(--accent-teal);
+}
+
+/* --- RESPONSIVE FOR LOANS PAGE --- */
+@media (max-width: 768px) {
+    .overdue-section, .current-loans-section {
+        padding: 1.5rem;
+    }
+    .overdue-section h3, .current-loans-section h3 {
+        font-size: 1.5rem;
+    }
+    .loans-table thead th, .loans-table tbody td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    .loans-table .status {
+        font-size: 0.75rem;
+        padding: 3px 8px;
+    }
+}
+
+/* ==========================================
+   ABOUT US PAGE STYLES
+   ========================================== */
+
+.about-us-section {
+    padding: 3rem 0;
+}
+
+.about-us-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+}
+
+.about-us-section .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* About Content Blocks - alternating layout */
+.about-content-block {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 3rem; /* Space between text and image */
+    margin-bottom: 3rem;
+    align-items: center; /* Vertically align items */
+    padding: 2rem;
+    background-color: white; /* White background for blocks */
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+}
+
+.about-content-block .text-content,
+.about-content-block .image-content {
+    flex: 1; /* Each takes available space */
+    min-width: 300px; /* Minimum width before wrapping */
+}
+
+.about-content-block .image-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-light);
+    display: block; /* Remove extra space below image */
+}
+
+.about-content-block h3 {
+    font-size: 2rem;
+    color: var(--vintage-brown); /* Using brown for emphasis */
+    margin-bottom: 1rem;
+}
+
+.about-content-block p,
+.about-content-block ul {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.about-content-block ul {
+    list-style: none; /* Remove default bullets */
+    padding: 0;
+}
+
+.about-content-block li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.about-content-block li i {
+    color: var(--accent-teal); /* Icon color */
+    font-size: 1.2rem;
+}
+
+/* Alternating layout order */
+.about-content-block.values-block .image-content { order: 1; }
+.about-content-block.values-block .text-content { order: 2; }
+
+.about-content-block.history-block .text-content { order: 1; } /* Default text-first */
+
+/* --- RESPONSIVE FOR ABOUT US --- */
+@media (max-width: 768px) {
+    .about-us-section h2 {
+        font-size: 2rem;
+    }
+    .about-content-block {
+        flex-direction: column; /* Stack text and image */
+        text-align: center;
+        align-items: center;
+    }
+    .about-content-block .image-content {
+        order: 0 !important; /* Reset order when stacked */
+        margin-top: 1rem;
+    }
+    .about-content-block .text-content {
+        order: 0 !important;
+    }
+    .about-content-block li {
+        justify-content: center; /* Center icons and text if stacked */
+    }
+}
+
+/* ==========================================
+   CONTACT US PAGE STYLES
+   ========================================== */
+
+.contact-us-section {
+    padding: 3rem 0;
+}
+
+.contact-us-section h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+}
+
+.contact-us-section .section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+/* Layout for contact info and form */
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* Info column and Form column */
+    gap: 3rem;
+    margin-bottom: 3rem;
+    background-color: white;
+    padding: 3rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    align-items: start; /* Align items to the top */
+}
+
+.contact-info-column h3,
+.contact-form-column h3 {
+    font-size: 1.8rem;
+    color: var(--vintage-brown);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--vintage-border);
+    padding-bottom: 0.5rem;
+}
+
+/* Contact Details List */
+.contact-details {
+    margin-bottom: 2rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    gap: 15px;
+    margin-bottom: 1.5rem;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--accent-teal);
+    padding-top: 5px; /* Align icon better with text */
+}
+
+.contact-item .text-content p {
+    margin-bottom: 0.3rem; /* Less space between lines if multiple */
+}
+
+.contact-item .text-content strong {
+    color: var(--primary-navy);
+    display: block; /* Ensure strong is on its own line if needed */
+    margin-bottom: 0.2rem;
+}
+
+.contact-item a {
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+.contact-item a:hover {
+    color: var(--accent-teal);
+}
+
+/* Social Media Links */
+.contact-social {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.contact-social h4 {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+.contact-social a {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    transition: color 0.3s ease;
+}
+
+.contact-social a:hover {
+    color: var(--accent-teal);
+}
+
+/* Contact Form Styling */
+.contact-form-column {
+    background-color: var(--bg-light); /* Slightly different background for form */
+    padding: 2rem;
+    border-radius: var(--radius-md);
+}
+
+.contact-form-column .form-group label {
+    color: var(--vintage-brown);
+    font-family: var(--font-serif);
+}
+
+.contact-form-column input[type="text"],
+.contact-form-column input[type="email"],
+.contact-form-column textarea {
+    background-color: white;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+}
+.contact-form-column input[type="text"]:focus,
+.contact-form-column input[type="email"]:focus,
+.contact-form-column textarea:focus {
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 0 3px rgba(64, 224, 208, 0.2);
+}
+
+.contact-form-column .btn-block {
+    background-color: var(--vintage-brown); /* Button style consistent with other forms */
+    color: white;
+}
+.contact-form-column .btn-block:hover {
+    background-color: var(--primary-blue);
+}
+
+/* MAP SECTION */
+.contact-map-section {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--vintage-border);
+}
+
+.contact-map-section h3 {
+    font-size: 1.8rem;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+}
+
+.map-placeholder {
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+.map-placeholder iframe {
+    border: none;
+    display: block; /* Remove extra space below iframe */
+}
+
+/* --- RESPONSIVE FOR CONTACT US --- */
+@media (max-width: 900px) {
+    .contact-layout {
+        grid-template-columns: 1fr; /* Stack columns */
+        padding: 2rem;
+    }
+    .contact-info-column, .contact-form-column {
+        margin-bottom: 2rem; /* Space between stacked sections */
+    }
+    .contact-item {
+        align-items: center; /* Center align items when stacked */
+    }
+    .contact-form-column .btn-block {
+        width: 100%; /* Ensure button is full width */
+    }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibryConnect - Discover Your Knowledge</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">LibryConnect</div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-search"></i> Search</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-users"></i> Members</a></li>
+                    <li>
+                        <a href="loans.html" class="nav-link">
+                            <i class="fas fa-book"></i> Loans
+                            <span class="badge-overdue">OVERDUE</span>
+                        </a>
+                    </li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="register.html" class="btn btn-library-card">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SEARCH SECTION (Search-Centric Layout) -->
+        <section class="hero-search-section">
+            <div class="container">
+                <h1>Welcome to the Library</h1>
+                <p>Search. Learn. Connect. Explore thousands of books and resources right at your fingertips.</p>
+
+                <div class="search-bar-wrapper">
+                    <form action="search-results.html" method="GET" class="search-form">
+                        <input type="text" name="query" class="search-input" placeholder="Search by Title, Author, or Subject..." required>
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="search-filters">
+                    <span>Quick Filter:</span>
+                    <a href="search-results.html?filter=available" class="filter-tag">Available</a>
+                    <a href="search-results.html?filter=new" class="filter-tag">New Arrivals</a>
+                    <a href="search-results.html?filter=reference" class="filter-tag">Reference</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED BOOKS SECTION -->
+        <section class="section featured-section">
+            <div class="container">
+                <h2 class="section-title">Featured Collections</h2>
+                <div class="grid-layout">
+                    
+                    <!-- Book Card 1 -->
+                    <div class="book-card">
+                        <img src="images/great.jpeg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">The Great Adventure</h3>
+                            <p class="book-author">by John Writer</p>
+                            <span class="status available">Available</span>
+                        </div>
+                    </div>
+
+                    <!-- Book Card 2 -->
+                    <div class="book-card">
+                        <img src="images/science.jpeg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">Science & Beyond</h3>
+                            <p class="book-author">by A. Scientist</p>
+                            <span class="status checked-out">Checked Out</span>
+                        </div>
+                    </div>
+
+                    <!-- Book Card 3 -->
+                    <div class="book-card">
+                        <img src="images/history.jpeg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">History Unfolded</h3>
+                            <p class="book-author">by History Buff</p>
+                            <span class="status available">Available</span>
+                        </div>
+                    </div>
+
+                    <!-- Book Card 4 -->
+                    <div class="book-card">
+                        <img src="images/poetry.jpeg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">Poetry & Thoughts</h3>
+                            <p class="book-author">by Poet Person</p>
+                            <span class="status available">Available</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 LibryConnect. All Rights Reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: #DC3545;"></i> for Education</p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard - LibryConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">LibryConnect</div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-search"></i> Search</a></li>
+                    <li><a href="dashboard.html" class="active"><i class="fas fa-users"></i> Members</a></li>
+                    <li>
+                        <a href="loans.html" class="nav-link">
+                            <i class="fas fa-book"></i> Loans
+                            <span class="badge-overdue">OVERDUE</span>
+                        </a>
+                    </li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="register.html" class="btn btn-library-card">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="member-dashboard-section">
+            <div class="container">
+                <h2>Welcome, [User's Name]!</h2>
+
+                <div class="dashboard-layout">
+                    <!-- SIDEBAR: User Info, Quick Links, Overdue Alert -->
+                    <div class="sidebar-card">
+                        <h3>Your Account</h3>
+                        <div class="user-profile-summary">
+                            <i class="fas fa-user-circle user-icon"></i>
+                            <p><strong>Library ID:</strong> [User's ID]</p>
+                            <p><strong>Email:</strong> [User's Email]</p>
+                            <p><strong>Membership Status:</strong> Active</p>
+                        </div>
+                        <hr class="sidebar-divider">
+                        
+                        <!-- OVERDUE ALERT (Highly Visible) -->
+                        <div class="overdue-alert">
+                            <h4><i class="fas fa-exclamation-triangle"></i> Overdue Items!</h4>
+                            <p>You currently have <strong>[Number]</strong> overdue item(s). Please return them soon to avoid further penalties.</p>
+                            <a href="loans.html#overdue" class="btn btn-secondary btn-sm">View Overdue Loans</a>
+                        </div>
+                        <hr class="sidebar-divider">
+
+                        <div class="quick-links">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#loans"><i class="fas fa-book-open"></i> Current Loans</a></li>
+                                <li><a href="#holds"><i class="fas fa-bookmark"></i> My Holds</a></li>
+                                <li><a href="account-settings.html"><i class="fas fa-cog"></i> Account Settings</a></li>
+                                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- MAIN CONTENT: Loans and Holds -->
+                    <div class="main-content">
+                        
+                        <!-- Current Loans Section -->
+                        <div id="loans" class="dashboard-section">
+                            <h3><i class="fas fa-book"></i> Current Loans</h3>
+                            <div class="loans-table-wrapper">
+                                <table class="loans-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Book Title</th>
+                                            <th>Author</th>
+                                            <th>Due Date</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Example Loan 1 -->
+                                        <tr>
+                                            <td>The Lost City of Z</td>
+                                            <td>David Grann</td>
+                                            <td class="due-date overdue">2026-10-15</td>
+                                            <td><span class="status overdue">Overdue</span></td>
+                                            <td><a href="book-details.html?id=1" class="btn-link">Details</a> | <a href="#" class="btn-link">Renew</a></td>
+                                        </tr>
+                                        <!-- Example Loan 2 -->
+                                        <tr>
+                                            <td>Sapiens: A Brief History of Humankind</td>
+                                            <td>Yuval Noah Harari</td>
+                                            <td class="due-date">2026-11-01</td>
+                                            <td><span class="status borrowed">Borrowed</span></td>
+                                            <td><a href="book-details.html?id=2" class="btn-link">Details</a> | <a href="#" class="btn-link">Renew</a></td>
+                                        </tr>
+                                        <!-- Example Loan 3 -->
+                                        <tr>
+                                            <td>Educated</td>
+                                            <td>Tara Westover</td>
+                                            <td class="due-date">2026-11-10</td>
+                                            <td><span class="status borrowed">Borrowed</span></td>
+                                            <td><a href="book-details.html?id=3" class="btn-link">Details</a> | <a href="#" class="btn-link">Renew</a></td>
+                                        </tr>
+                                        <!-- More loans would be here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- My Holds Section -->
+                        <div id="holds" class="dashboard-section">
+                            <h3><i class="fas fa-bookmark"></i> My Holds</h3>
+                            <div class="holds-list">
+                                <!-- Example Hold 1 -->
+                                <div class="hold-item">
+                                    <p><strong>Title:</strong> The Gene: An Intimate History</p>
+                                    <p><strong>Author:</strong> Siddhartha Mukherjee</p>
+                                    <p><strong>Status:</strong> <span class="status on-hold">On Hold</span> (Position: 2nd in queue)</p>
+                                    <p><strong>Requested:</strong> 2026-10-20</p>
+                                </div>
+                                <!-- Example Hold 2 -->
+                                <div class="hold-item">
+                                    <p><strong>Title:</strong> Project Hail Mary</p>
+                                    <p><strong>Author:</strong> Andy Weir</p>
+                                    <p><strong>Status:</strong> <span class="status available-for-pickup">Available for Pickup</span> (Pick up by: 2026-11-05)</p>
+                                    <p><strong>Requested:</strong> 2026-10-18</p>
+                                </div>
+                                <!-- More holds would be here -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 LibryConnect. All Rights Reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: #DC3545;"></i> for Education</p>
+        </div>
+    </footer>
+
+</body>
+</html>

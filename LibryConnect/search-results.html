@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - LibryConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">LibryConnect</div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-search"></i> Search</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-users"></i> Members</a></li>
+                    <li>
+                        <a href="loans.html" class="nav-link">
+                            <i class="fas fa-book"></i> Loans
+                            <span class="badge-overdue">OVERDUE</span>
+                        </a>
+                    </li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="register.html" class="btn btn-library-card">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- SEARCH BAR REPEAT FOR CONTINUITY -->
+        <section class="search-bar-section">
+            <div class="container">
+                <div class="search-bar-wrapper">
+                    <form action="search-results.html" method="GET" class="search-form">
+                        <input type="text" name="query" class="search-input" placeholder="Search by Title, Author, or Subject..." required value="[User's Previous Search Term]">
+                        <button type="submit" class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="search-info">
+                    <h2>Showing results for: "<span class="search-term">[User's Previous Search Term]</span>"</h2>
+                    <p class="result-count">[Number] results found.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEARCH RESULTS GRID -->
+        <section class="search-results-section">
+            <div class="container">
+                <div class="books-grid">
+                    
+                    <!-- BOOK CARD 1 -->
+                    <div class="book-card">
+                        <img src="images/lost.jpeg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">The Lost City of Z</h3>
+                            <p class="book-author">by David Grann</p>
+                            <span class="status available">Available</span>
+                            <div class="book-actions">
+                                <a href="book-details.html?id=1" class="btn btn-library-card">View Details</a>
+                                <button class="btn btn-primary btn-loan">Loan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BOOK CARD 2 -->
+                    <div class="book-card">
+                        <img src="images/sapiens.jpg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">Sapiens: A Brief History of Humankind</h3>
+                            <p class="book-author">by Yuval Noah Harari</p>
+                            <span class="status checked-out">Checked Out</span>
+                            <div class="book-actions">
+                                <a href="book-details.html?id=2" class="btn btn-library-card">View Details</a>
+                                <button class="btn btn-hold btn-disabled">On Hold</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BOOK CARD 3 -->
+                    <div class="book-card">
+                        <img src="images/educated.jpeg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">Educated</h3>
+                            <p class="book-author">by Tara Westover</p>
+                            <span class="status available">Available</span>
+                            <div class="book-actions">
+                                <a href="book-details.html?id=3" class="btn btn-library-card">View Details</a>
+                                <button class="btn btn-primary btn-loan">Loan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BOOK CARD 4 -->
+                    <div class="book-card">
+                        <img src="images/thegene.jpeg" alt="Book Cover" class="book-cover">
+                        <div class="book-info">
+                            <h3 class="book-title">The Gene: An Intimate History</h3>
+                            <p class="book-author">by Siddhartha Mukherjee</p>
+                            <span class="status available">Available</span>
+                            <div class="book-actions">
+                                <a href="book-details.html?id=4" class="btn btn-library-card">View Details</a>
+                                <button class="btn btn-primary btn-loan">Loan</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more book cards as needed -->
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 LibryConnect. All Rights Reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: #DC3545;"></i> for Education</p>
+        </div>
+    </footer>
+
+</body>
+</html>

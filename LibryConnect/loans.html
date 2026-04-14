@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Loans - LibryConnect</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">LibryConnect</div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-search"></i> Search</a></li>
+                    <li><a href="dashboard.html"><i class="fas fa-users"></i> Members</a></li>
+                    <li>
+                        <!-- Active link for Loans -->
+                        <a href="loans.html" class="nav-link active"> 
+                            <i class="fas fa-book"></i> Loans
+                            <span class="badge-overdue">OVERDUE</span>
+                        </a>
+                    </li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="user-actions">
+                <a href="login.html" class="btn btn-secondary">Login</a>
+                <a href="register.html" class="btn btn-library-card">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="loans-page-section">
+            <div class="container">
+                <h2>Your Current Loans</h2>
+                
+                <!-- OVERDUE ITEMS SECTION (If any) -->
+                <div class="overdue-section">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Overdue Items</h3>
+                    <p>The following items are past their due date. Please return them promptly.</p>
+                    <div class="loans-table-wrapper">
+                        <table class="loans-table overdue-table">
+                            <thead>
+                                <tr>
+                                    <th>Book Title</th>
+                                    <th>Author</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Example Overdue Loan -->
+                                <tr>
+                                    <td>The Lost City of Z</td>
+                                    <td>David Grann</td>
+                                    <td class="due-date overdue">2026-10-15</td>
+                                    <td><span class="status overdue">Overdue</span></td>
+                                    <td><a href="book-details.html?id=1" class="btn-link">Details</a> | <a href="#" class="btn-link">Renew</a></td>
+                                </tr>
+                                <!-- More overdue items if applicable -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- CURRENTLY BORROWED ITEMS SECTION -->
+                <div class="current-loans-section">
+                    <h3><i class="fas fa-book-open"></i> Currently Borrowed</h3>
+                    <div class="loans-table-wrapper">
+                        <table class="loans-table">
+                            <thead>
+                                <tr>
+                                    <th>Book Title</th>
+                                    <th>Author</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Example Borrowed Loan 1 -->
+                                <tr>
+                                    <td>Sapiens: A Brief History of Humankind</td>
+                                    <td>Yuval Noah Harari</td>
+                                    <td class="due-date">2026-11-01</td>
+                                    <td><span class="status borrowed">Borrowed</span></td>
+                                    <td><a href="book-details.html?id=2" class="btn-link">Details</a> | <a href="#" class="btn-link">Renew</a></td>
+                                </tr>
+                                <!-- Example Borrowed Loan 2 -->
+                                <tr>
+                                    <td>Educated</td>
+                                    <td>Tara Westover</td>
+                                    <td class="due-date">2026-11-10</td>
+                                    <td><span class="status borrowed">Borrowed</span></td>
+                                    <td><a href="book-details.html?id=3" class="btn-link">Details</a> | <a href="#" class="btn-link">Renew</a></td>
+                                </tr>
+                                <!-- More borrowed items if applicable -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                 <!-- SECTION FOR HOLDS (Optional, could link to dashboard) -->
+                 <div class="holds-link-section">
+                    <p>You can also view your <a href="dashboard.html#holds">current holds here</a>.</p>
+                 </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 LibryConnect. All Rights Reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: #DC3545;"></i> for Education</p>
+        </div>
+    </footer>
+
+</body>
+</html>
