@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | PayRoll Edge</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com"></script>
+</head>
+<body class="dashboard-body">
+
+ 
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-box">
+                <i data-lucide="shield-check"></i>
+            </div>
+            <span>PayRoll Edge</span>
+        </div>
+
+        <div class="nav-links">
+        
+            <button class="nav-item" onclick="location.href='index.html'"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+            <button class="nav-item" onclick="location.href='staff.html'"><i data-lucide="users"></i> Staff Directory</button>
+            <button class="nav-item" onclick="location.href='timesheets.html'"><i data-lucide="clock"></i> Timesheets</button>
+            <button class="nav-item" onclick="location.href='payslips.html'"><i data-lucide="file-spreadsheet"></i> Payslips</button>
+            <button class="nav-item" onclick="location.href='support.html'"><i data-lucide="help-circle"></i> Help Desk</button>
+            <button class="nav-item" onclick="location.href='settings.html'"><i data-lucide="settings"></i> Account</button>
+        </div>
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="location.href='login.html'"><i data-lucide="log-out"></i> Sign Out</button>
+        </div>
+    </nav>
+        </div>
+    </nav>
+
+    
+	
+    <main class="content">
+        <header class="main-header">
+            <div class="welcome">
+                <h1>Employee Dashboard</h1>
+                <p>Status: <span class="status-pill">● Secure Session</span></p>
+            </div>
+            <div class="user-profile">
+                <div class="profile-info">
+                    <span class="user-name">John Doe</span>
+                    <span class="user-id">PE-12345</span>
+                </div>
+                <div class="profile-avatar">JD</div>
+            </div>
+        </header>
+
+      
+        <div class="bento-grid">
+            
+            
+            <div class="widget bento-item">
+                <div class="widget-header">
+                    <h3>Log Work Hours</h3>
+                    <i data-lucide="calendar-plus"></i>
+                </div>
+                <div class="input-container">
+                    <label>Standard Hours</label>
+                    <input type="number" id="hoursInput" value="40" min="0">
+                    <button class="btn-primary" onclick="runCalculations()">Calculate Net Pay</button>
+                </div>
+            </div>
+
+            
+            <div class="widget bento-item center-align">
+                <h3>Next Payday</h3>
+                <div class="big-stat">Oct 25</div>
+                <div class="sub-label">Friday, Bi-Weekly Cycle</div>
+                <div class="progress-bar"><div class="progress-fill"></div></div>
+            </div>
+
+          
+            <div class="widget bento-item">
+                <div class="widget-header">
+                    <h3>Tax Withholding</h3>
+                    <button class="info-btn" title="View Breakdown">Tax View</button>
+                </div>
+                <div class="big-stat" id="taxDisplay">$0.00</div>
+                <p class="trend-text"><i data-lucide="trending-up"></i> 22.5% Effective Rate</p>
+            </div>
+
+     
+            <div class="widget bento-item span-2">
+                <div class="widget-header">
+                    <h3>Payslip Summary</h3>
+                    <button class="btn-outline"><i data-lucide="download"></i> Export Data</button>
+                </div>
+                <div class="payslip-table">
+                    <div class="table-row"><span>Gross Earnings</span><span id="grossDisplay">$0.00</span></div>
+                    <div class="table-row"><span>Federal Tax</span><span id="fedTaxDisplay" class="deduction">-$0.00</span></div>
+                    <div class="table-row"><span>Social Security</span><span id="ssTaxDisplay" class="deduction">-$0.00</span></div>
+                    <div class="table-row total"><span>Net Paycheck</span><span id="netDisplay">$0.00</span></div>
+                </div>
+            </div>
+
+           
+            <div class="widget bento-item security-widget">
+                <i data-lucide="fingerprint" class="bio-icon"></i>
+                <h3>Identity Verified</h3>
+                <p>Biometric authentication was used for this session.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        function runCalculations() {
+            const hours = document.getElementById('hoursInput').value;
+            const hourlyRate = 55.00; // Mock Corporate Rate
+            
+            const gross = hours * hourlyRate;
+            const fedTax = gross * 0.15;
+            const ssTax = gross * 0.075;
+            const totalTax = fedTax + ssTax;
+            const net = gross - totalTax;
+
+            // Update UI
+            document.getElementById('grossDisplay').innerText = `$${gross.toLocaleString()}`;
+            document.getElementById('taxDisplay').innerText = `$${totalTax.toLocaleString()}`;
+            document.getElementById('fedTaxDisplay').innerText = `-$${fedTax.toLocaleString()}`;
+            document.getElementById('ssTaxDisplay').innerText = `-$${ssTax.toLocaleString()}`;
+            document.getElementById('netDisplay').innerText = `$${net.toLocaleString()}`;
+        }
+        
+        // Run once on load
+        window.onload = runCalculations;
+    </script>
+</body>
+</html>
+

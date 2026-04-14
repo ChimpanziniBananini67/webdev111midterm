@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ScholarPortal | Create Account</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* GLOBAL STYLE */
+* { box-sizing:border-box; font-family:'Segoe UI',sans-serif; }
+body { margin:0; display:flex; background:#0f172a; color:#fff; height:100vh; justify-content:center; align-items:center; }
+
+.register-card {
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.4);
+    width: 360px;
+    text-align:center;
+}
+
+.register-card h2 {
+    color:#38bdf8;
+    margin-bottom:25px;
+}
+
+input {
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #334155;
+    background:rgba(255,255,255,0.1);
+    color:#fff;
+}
+
+input::placeholder { color:#cbd5f5; }
+
+button {
+    width:100%;
+    padding:12px;
+    background:#38bdf8;
+    border:none;
+    border-radius:8px;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+button:hover { background:#0ea5e9; }
+
+p { margin-top:15px; }
+a { color:#38bdf8; text-decoration:none; }
+a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<div class="register-card">
+    <h2>Create Account</h2>
+    <form onsubmit="return createStudentAccount()">
+        <input type="text" id="studentID" placeholder="Student ID" required>
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="text" id="program" placeholder="Program" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="slogin.html">Login</a></p>
+</div>
+
+<script>
+function createStudentAccount() {
+    const studentID = document.getElementById("studentID").value;
+    const name = document.getElementById("name").value;
+    const program = document.getElementById("program").value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if(password !== confirmPassword){
+        alert("Passwords do not match!");
+        return false;
+    }
+
+    localStorage.setItem("studentID", studentID);
+    localStorage.setItem("studentName", name);
+    localStorage.setItem("studentProgram", program);
+    localStorage.setItem("studentPassword", password);
+
+    alert("Account created successfully! You can now login.");
+    window.location.href = "login.html";
+    return false;
+}
+</script>
+
+</body>
+</html>

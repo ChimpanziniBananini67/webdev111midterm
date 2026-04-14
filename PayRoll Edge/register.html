@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | PayRoll Edge Secure</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com"></script>
+</head>
+<body class="auth-page">
+
+    <div class="login-container">
+        <div class="login-card">
+            <header class="auth-header">
+                <div class="logo-lock">
+                    <i data-lucide="user-plus" class="brand-icon"></i>
+                </div>
+                <h1>Request Access</h1>
+                <p>Join the PayRoll Edge Network</p>
+            </header>
+
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <!-- Full Name -->
+                <div class="input-group">
+                    <label>Full Legal Name</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="user"></i>
+                        <input type="text" id="regName" placeholder="John Doe" required>
+                    </div>
+                </div>
+
+                <!-- Employee ID -->
+                <div class="input-group">
+                    <label>Employee ID</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="briefcase"></i>
+                        <input type="text" id="empID" placeholder="PE-12345" required>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="input-group">
+                    <label>Corporate Email</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="mail"></i>
+                        <input type="email" id="regEmail" placeholder="name@company.com" required>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="input-group">
+                    <label>Create Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="regPassword" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div class="auth-options">
+                    <label class="checkbox-container" style="font-size: 0.75rem;">
+                        <input type="checkbox" required> I agree to the <a href="#" class="forgot-link">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-login" id="regBtn" style="background: var(--action-blue);">
+                    <span id="regBtnText">Create Account</span>
+                    <div id="regLoader" class="spinner" style="display: none;"></div>
+                </button>
+            </form>
+
+            <footer class="auth-footer">
+                Already registered? <a href="login.html">Sign In</a>
+            </footer>
+        </div>
+        
+        <p class="security-note">
+            <i data-lucide="shield-check"></i>
+            HR Verification required after registration.
+        </p>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('regBtn');
+            const text = document.getElementById('regBtnText');
+            const loader = document.getElementById('regLoader');
+
+            // Visual feedback for "Corporate Processing"
+            btn.disabled = true;
+            text.style.display = 'none';
+            loader.style.display = 'block';
+
+            // Simulate database registration
+            setTimeout(() => {
+                alert("Registration Successful! Your ID has been linked. Redirecting to Login...");
+                window.location.href = 'login.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

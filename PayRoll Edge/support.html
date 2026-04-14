@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support | PayRoll Edge</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com"></script>
+</head>
+<body class="dashboard-body">
+
+    <!-- Sidebar (Shared) -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-box"><i data-lucide="shield-check"></i></div>
+            <span>PayRoll Edge</span>
+        </div>
+        <div class="nav-links">
+             <button class="nav-item" onclick="location.href='index.html'"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+            <button class="nav-item" onclick="location.href='staff.html'"><i data-lucide="users"></i> Staff Directory</button>
+            <button class="nav-item" onclick="location.href='timesheets.html'"><i data-lucide="clock"></i> Timesheets</button>
+            <button class="nav-item" onclick="location.href='payslips.html'"><i data-lucide="file-spreadsheet"></i> Payslips</button>
+            <button class="nav-item" onclick="location.href='support.html'"><i data-lucide="help-circle"></i> Help Desk</button>
+            <button class="nav-item" onclick="location.href='settings.html'"><i data-lucide="settings"></i> Account</button>
+        </div>
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="location.href='login.html'"><i data-lucide="log-out"></i> Sign Out</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <header class="main-header">
+            <div class="welcome">
+                <h1>Secure Help Desk</h1>
+                <p>Support for Payroll, Benefits, and Technical Issues.</p>
+            </div>
+            <div class="status-pill" style="background: #EBF8FF; color: #2B6CB0;">
+                <i data-lucide="message-square" style="width:14px; margin-right:5px;"></i> Avg Response: 4h
+            </div>
+        </header>
+
+        <div class="bento-grid">
+            <!-- New Ticket Form -->
+            <div class="widget bento-item span-2">
+                <div class="widget-header">
+                    <h3>Submit a Request</h3>
+                </div>
+                <form id="supportForm" onsubmit="submitTicket(event)">
+                    <div class="grid-2-col">
+                        <div class="input-group">
+                            <label>Issue Category</label>
+                            <select class="custom-select" id="category">
+                                <option>Payroll Discrepancy</option>
+                                <option>Tax Form Request</option>
+                                <option>Direct Deposit Issue</option>
+                                <option>Technical Glitch</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Priority Level</label>
+                            <select class="custom-select" id="priority">
+                                <option>Normal</option>
+                                <option>Urgent (Affects Pay)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Subject</label>
+                        <input type="text" id="subject" placeholder="Brief summary of the issue" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Detailed Description</label>
+                        <textarea id="description" rows="4" style="width:100%; border-radius:8px; border:1.5px solid var(--border); padding:12px; font-family:inherit;" placeholder="Explain your request in detail..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" id="submitBtn">Send Secure Message</button>
+                </form>
+            </div>
+
+            <!-- Knowledge Base Widget -->
+            <div class="widget bento-item">
+                <div class="widget-header">
+                    <h3>Quick FAQs</h3>
+                    <i data-lucide="book" style="color: var(--slate);"></i>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <strong>When is the next W-2?</strong>
+                        <p>Available by Jan 31st each year.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Missing PTO?</strong>
+                        <p>Accruals update on the 1st of each month.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Change Bank?</strong>
+                        <p>Use the Account Settings menu.</p>
+                    </div>
+                </div>
+                <button class="btn-text" style="width:100%; justify-content:center; margin-top:15px;">Search Knowledge Base</button>
+            </div>
+
+            <!-- Recent Activity/Tickets -->
+            <div class="widget bento-item span-3">
+                <div class="widget-header">
+                    <h3>My Recent Inquiries</h3>
+                </div>
+                <div class="table-container">
+                    <table class="corporate-table">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Subject</th>
+                                <th>Date Submitted</th>
+                                <th>Assigned To</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ticketList">
+                            <tr>
+                                <td>#PE-9902</td>
+                                <td>Address Update Verification</td>
+                                <td>Oct 12, 2023</td>
+                                <td>HR Support</td>
+                                <td><span class="status-pill" style="background:#FEEBC8; color:#975A16;">In Progress</span></td>
+                            </tr>
+                            <tr>
+                                <td>#PE-8841</td>
+                                <td>Direct Deposit Change</td>
+                                <td>Sep 28, 2023</td>
+                                <td>Payroll Dept</td>
+                                <td><span class="status-pill" style="background:#C6F6D5; color:#22543D;">Resolved</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        function submitTicket(event) {
+            event.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerText;
+
+            btn.disabled = true;
+            btn.innerHTML = '<i data-lucide="loader-2" class="spin"></i> Encrypting & Sending...';
+            lucide.createIcons();
+
+            setTimeout(() => {
+                alert("Ticket #PE-" + Math.floor(1000 + Math.random() * 9000) + " has been submitted successfully.");
+                btn.disabled = false;
+                btn.innerText = originalText;
+                document.getElementById('supportForm').reset();
+                lucide.createIcons();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

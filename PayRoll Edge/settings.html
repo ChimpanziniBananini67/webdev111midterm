@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings | PayRoll Edge</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com"></script>
+</head>
+<body class="dashboard-body">
+
+   
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-box"><i data-lucide="shield-check"></i></div>
+            <span>PayRoll Edge</span>
+        </div>
+        <div class="nav-links">
+          
+           <button class="nav-item" onclick="location.href='index.html'"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+            <button class="nav-item" onclick="location.href='staff.html'"><i data-lucide="users"></i> Staff Directory</button>
+            <button class="nav-item" onclick="location.href='timesheets.html'"><i data-lucide="clock"></i> Timesheets</button>
+            <button class="nav-item" onclick="location.href='payslips.html'"><i data-lucide="file-spreadsheet"></i> Payslips</button>
+            <button class="nav-item" onclick="location.href='support.html'"><i data-lucide="help-circle"></i> Help Desk</button>
+            <button class="nav-item" onclick="location.href='settings.html'"><i data-lucide="settings"></i> Account</button>
+        </div>
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="location.href='login.html'"><i data-lucide="log-out"></i> Sign Out</button>
+        </div>
+    </nav>
+
+    
+    <main class="content">
+        <header class="main-header">
+            <div class="welcome">
+                <h1>Account Settings</h1>
+                <p>Manage your profile and payment preferences.</p>
+            </div>
+            <button class="btn-primary" style="width: auto;" onclick="saveChanges()">
+                <i data-lucide="save"></i> Save All Changes
+            </button>
+        </header>
+
+        <div class="bento-grid">
+           
+            <div class="widget bento-item">
+                <div class="widget-header">
+                    <h3>Employee Identity</h3>
+                </div>
+                <div class="profile-setup">
+                    <div class="large-avatar">JD</div>
+                    <button class="btn-text" style="margin: 10px auto; display: block;">Change Photo</button>
+                </div>
+                <div class="input-group">
+                    <label>Preferred Name</label>
+                    <input type="text" value="John Doe">
+                </div>
+                <div class="input-group">
+                    <label>Job Title</label>
+                    <input type="text" value="Senior Software Engineer" disabled>
+                </div>
+            </div>
+
+            
+            <div class="widget bento-item span-2">
+                <div class="widget-header">
+                    <h3>Direct Deposit (Primary)</h3>
+                    <span class="status-pill">● Secure Vault</span>
+                </div>
+                <div class="bank-card">
+                    <div class="bank-icon"><i data-lucide="landmark"></i></div>
+                    <div class="bank-details">
+                        <p><strong>Chase Manhattan Bank</strong></p>
+                        <p style="color: var(--slate); font-size: 0.85rem;">Account Ending in ****6789</p>
+                    </div>
+                    <button class="btn-outline">Edit</button>
+                </div>
+                
+                <div class="grid-2-col" style="margin-top: 20px;">
+                    <div class="input-group">
+                        <label>Routing Number</label>
+                        <input type="password" value="123456789">
+                    </div>
+                    <div class="input-group">
+                        <label>Account Number</label>
+                        <input type="password" value="987654321">
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="widget bento-item span-2">
+                <div class="widget-header">
+                    <h3>Tax Withholding (W-4)</h3>
+                </div>
+                <div class="grid-2-col">
+                    <div class="input-group">
+                        <label>Filing Status</label>
+                        <select class="custom-select">
+                            <option>Single or Married Filing Separately</option>
+                            <option>Married Filing Jointly</option>
+                            <option>Head of Household</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Extra Withholding ($)</label>
+                        <input type="number" placeholder="0.00">
+                    </div>
+                </div>
+                <p class="security-disclaimer">
+                    <i data-lucide="info"></i> 
+                    Changes to tax withholding may take 1-2 pay cycles to reflect on your payslip.
+                </p>
+            </div>
+
+           
+            <div class="widget bento-item">
+                <div class="widget-header">
+                    <h3>Security</h3>
+                </div>
+                <div class="toggle-group">
+                    <span>Biometric Login</span>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-group">
+                    <span>Two-Factor Auth</span>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button class="btn-outline" style="width: 100%; margin-top: 20px;">Update Password</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        function saveChanges() {
+            const btn = document.querySelector('.btn-primary');
+            const originalHtml = btn.innerHTML;
+            
+            btn.innerHTML = '<i data-lucide="loader-2" class="spin"></i> Saving...';
+            lucide.createIcons();
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i data-lucide="check"></i> Changes Saved';
+                btn.style.background = '#48BB78';
+                lucide.createIcons();
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.style.background = 'var(--navy)';
+                    lucide.createIcons();
+                }, 2000);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

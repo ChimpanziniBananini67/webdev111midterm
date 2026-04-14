@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timesheets | PayRoll Edge</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com"></script>
+</head>
+<body class="dashboard-body">
+
+  
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-box"><i data-lucide="shield-check"></i></div>
+            <span>PayRoll Edge</span>
+        </div>
+        <div class="nav-links">
+          
+           <button class="nav-item" onclick="location.href='index.html'"><i data-lucide="layout-dashboard"></i> Dashboard</button>
+            <button class="nav-item" onclick="location.href='staff.html'"><i data-lucide="users"></i> Staff Directory</button>
+            <button class="nav-item" onclick="location.href='timesheets.html'"><i data-lucide="clock"></i> Timesheets</button>
+            <button class="nav-item" onclick="location.href='payslips.html'"><i data-lucide="file-spreadsheet"></i> Payslips</button>
+            <button class="nav-item" onclick="location.href='support.html'"><i data-lucide="help-circle"></i> Help Desk</button>
+            <button class="nav-item" onclick="location.href='settings.html'"><i data-lucide="settings"></i> Account</button>
+        </div>
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="location.href='login.html'"><i data-lucide="log-out"></i> Sign Out</button>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header class="main-header">
+            <div class="welcome">
+                <h1>Attendance & Hours</h1>
+                <p>Pay Period: <span class="period-text">Oct 01 - Oct 15</span></p>
+            </div>
+            <button class="btn-primary" style="width: auto;" onclick="toggleEntryModal()">
+                <i data-lucide="plus-circle" style="width:18px;"></i> Log New Shift
+            </button>
+        </header>
+
+        <div class="bento-grid">
+            
+            <div class="widget bento-item">
+                <h3>Total Hours</h3>
+                <div class="big-stat" id="summaryTotal">32.0</div>
+                <p class="trend-text">Target: 40.0/wk</p>
+            </div>
+            <div class="widget bento-item">
+                <h3>Overtime</h3>
+                <div class="big-stat" style="color: var(--action-blue);">2.5</div>
+                <p class="trend-text">1.5x Multiplier Active</p>
+            </div>
+            <div class="widget bento-item">
+                <h3>Status</h3>
+                <div class="big-stat" style="color: #ed8936;">Draft</div>
+                <p class="trend-text">Pending Submission</p>
+            </div>
+
+         
+            <div class="widget bento-item span-3">
+                <div class="widget-header">
+                    <h3>Current Period Entries</h3>
+                    <button class="btn-outline" onclick="submitTimesheet()">Submit to HR</button>
+                </div>
+                
+                <div class="table-container">
+                    <table class="corporate-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Category</th>
+                                <th>Time In</th>
+                                <th>Time Out</th>
+                                <th>Total Hours</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timesheetBody">
+                            <tr>
+                                <td>Oct 10, 2023</td>
+                                <td><span class="type-pill">Regular</span></td>
+                                <td>09:00 AM</td>
+                                <td>05:00 PM</td>
+                                <td class="hour-val">8.0</td>
+                                <td><button class="icon-only-btn"><i data-lucide="trash-2"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td>Oct 11, 2023</td>
+                                <td><span class="type-pill">Regular</span></td>
+                                <td>09:00 AM</td>
+                                <td>06:00 PM</td>
+                                <td class="hour-val">9.0</td>
+                                <td><button class="icon-only-btn"><i data-lucide="trash-2"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <div id="entryModal" class="modal-overlay" style="display:none;">
+        <div class="login-card modal-content">
+            <h3>Add Shift Entry</h3>
+            <div class="input-group">
+                <label>Date</label>
+                <input type="date" id="newDate">
+            </div>
+            <div class="input-group">
+                <label>Hours Worked</label>
+                <input type="number" id="newHours" placeholder="8.0">
+            </div>
+            <div style="display:flex; gap:10px; margin-top:20px;">
+                <button class="btn-primary" onclick="addEntry()">Confirm</button>
+                <button class="btn-outline" style="width:100%;" onclick="toggleEntryModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleEntryModal() {
+            const modal = document.getElementById('entryModal');
+            modal.style.display = modal.style.display === 'none' ? 'flex' : 'none';
+        }
+
+        function addEntry() {
+            const date = document.getElementById('newDate').value;
+            const hours = document.getElementById('newHours').value;
+
+            if(!date || !hours) return alert("Please fill all fields");
+
+            const tbody = document.getElementById('timesheetBody');
+            const row = `<tr>
+                <td>${date}</td>
+                <td><span class="type-pill">Regular</span></td>
+                <td>09:00 AM</td>
+                <td>Logged</td>
+                <td class="hour-val">${hours}</td>
+                <td><button class="icon-only-btn"><i data-lucide="trash-2"></i></button></td>
+            </tr>`;
+            
+            tbody.innerHTML += row;
+            lucide.createIcons();
+            toggleEntryModal();
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let sum = 0;
+            document.querySelectorAll('.hour-val').forEach(td => {
+                sum += parseFloat(td.innerText);
+            });
+            document.getElementById('summaryTotal').innerText = sum.toFixed(1);
+        }
+
+        function submitTimesheet() {
+            alert("Timesheet submitted to the Payroll Department for approval.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | PayRoll Edge Secure</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons for the Corporate Look -->
+    <script src="https://unpkg.com"></script>
+</head>
+<body class="auth-page">
+
+    <div class="login-container">
+        <div class="login-card">
+            <header class="auth-header">
+                <div class="logo-lock">
+                    <i data-lucide="shield-check" class="brand-icon"></i>
+                </div>
+                <h1>PayRoll Edge</h1>
+                <p>Enterprise Payroll & Tax Portal</p>
+            </header>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <label>Employee Email</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="mail"></i>
+                        <input type="email" id="email" placeholder="name@company.com" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Access Password</label>
+                    <div class="input-wrapper">
+                        <i data-lucide="lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <div class="auth-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox"> Remember this device
+                    </label>
+                    <a href="#" class="forgot-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <span id="btnText">Secure Login</span>
+                    <div id="loader" class="spinner" style="display: none;"></div>
+                </button>
+
+                <div class="biometric-divider">
+                    <span>OR USE BIOMETRICS</span>
+                </div>
+
+                <div class="biometric-actions">
+                    <button type="button" class="bio-btn" title="Fingerprint Login" onclick="simulateBiometric('Fingerprint')">
+                        <i data-lucide="fingerprint"></i>
+                    </button>
+                    <button type="button" class="bio-btn" title="FaceID Login" onclick="simulateBiometric('FaceID')">
+                        <i data-lucide="scan-face"></i>
+                    </button>
+                </div>
+            </form>
+
+            <footer class="auth-footer">
+                Don't have an account? <a href="register.html">Request Access</a>
+            </footer>
+        </div>
+        
+        <p class="security-note">
+            <i data-lucide="info"></i>
+            Encrypted with 256-bit AES Standards.
+        </p>
+    </div>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const btn = document.getElementById('loginBtn');
+            const text = document.getElementById('btnText');
+            const loader = document.getElementById('loader');
+
+            // Visual feedback
+            btn.disabled = true;
+            text.style.display = 'none';
+            loader.style.display = 'block';
+
+            // Simulate server authentication delay
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+
+        function simulateBiometric(type) {
+            alert(`Verifying ${type}... Please wait.`);
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
+
